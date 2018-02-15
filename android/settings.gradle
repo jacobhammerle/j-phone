@@ -1,0 +1,3 @@
+rootProject.name = 'j_phone'
+
+include ':app'
