@@ -1,7 +1,16 @@
 import React, { Component } from 'react';
+import { View, Text } from 'react-native';
 import { Calendar, CalendarList, Agenda } from 'react-native-calendars';
 
 class CalendarView extends Component {
+	renderSelectedDay() {
+		return (
+			<View>
+				<Text>Hello</Text>
+			</View>
+		)
+	}
+
 	render() {
 		return (
 			<Calendar
@@ -32,7 +41,9 @@ class CalendarView extends Component {
 				hideExtraDays={true}
 				disableMonthChange={false}
 				firstDay={1}
-			/>
+			>
+			</Calendar>
+			{this.renderSelectedDay()}
 		)
 	}
 }

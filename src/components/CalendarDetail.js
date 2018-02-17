@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-import { Text } from 'react-native';
+import { View, Text } from 'react-native';
 
-class CalendarDetail extends Component {
-	render() {
-		return (
+const CalendarDetail = ({ selectedDay }) => {
+	return (
+		<View>
 			<Text>
-				Hello World
+				Selected Day: {selectedDay}
 			</Text>
-		)
-	}
+		</View>
+	)
 }
 
-export default CalendarDetail;
+export { CalendarDetail };
