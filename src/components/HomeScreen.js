@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { View, Text } from 'react-native';
 import { Calendar } from 'react-native-calendars';
+import { selectedDay } from '../actions';
 
 class HomeScreen extends Component {
+	onDayPress(day) {
+		console.log(this.props.day.day);
+		this.props.selectedDay(day);
+	}
 
 	renderSelectedDay(day) {
-		console.log(day);
 		if (day) {
 			return (
 				<Text>
@@ -20,16 +25,23 @@ class HomeScreen extends Component {
 		)
 	}
 
-	grabSelectedDay(day) {
-		console.log(day.day);
-		this.renderSelectedDay(day.day);
+	renderSelectedDay() {
+		if (this.props.day) {
+			return (
+				<Text style={styles.dayTextStyle}>
+					{this.props.day.day.day}
+				</Text>
+			)
+		}
 	}
 
 	render() {
 		return (
 			<View>
 				<Calendar
-					style={{}}
+					style={{
+						height: 500
+					}}
 					theme={{
 						backgroundColor: '#ffffff',
 						calendarBackground: '#ffffff',
@@ -50,7 +62,7 @@ class HomeScreen extends Component {
 					current={Date()}
 					minDate={'2018-02-01'}
 					maxDate={'2018-05-30'}
-					onDayPress={(day) => this.grabSelectedDay(day)}
+					onDayPress={day => this.onDayPress({ day: day })}
 					monthFormat={'MMMM'}
 					hideArrows={false}
 					hideExtraDays={true}
@@ -63,4 +75,18 @@ class HomeScreen extends Component {
 	}
 }
 
-export default HomeScreen;
+const styles = {
+	dayTextStyle: {
+		fontSize: 20,
+		alignSelf: 'center',
+		color: 'green'
+	}
+}
+
+const mapStateToProps = state => {
+	return {
+		day: state.calendar.day
+	}
+}
+
+export default connect(mapStateToProps, { selectedDay })(HomeScreen);
