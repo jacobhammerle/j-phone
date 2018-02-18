@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Calendar } from 'react-native-calendars';
 import { connect } from 'react-redux';
-import { ScrollView, Text } from 'react-native';
+import { ScrollView, View, Text } from 'react-native';
 import { selectedDay } from '../actions';
 
 class HomeScreen extends Component {
@@ -18,10 +18,14 @@ class HomeScreen extends Component {
 	renderSelectedDay() {
 		if (this.props.day) {
 			return (
-				<Text style={styles.text}>
-					{this.props.day.day.day}
-					{this.getDayOfWeek(this.props.day.day.dateString)}
-				</Text>
+				<View>
+					<Text style={styles.dayNumber}>
+						{this.props.day.day.day}
+					</Text>
+					<Text style={styles.dayOfWeek}>
+						{this.getDayOfWeek(this.props.day.day.dateString)}
+					</Text>
+				</View>
 			)
 		}
 	}
@@ -60,10 +64,16 @@ const styles = {
 	    borderColor: '#eee',
 	    height: 350
   	},
-	text: {
+	dayNumber: {
+		fontSize: 32,
 	    textAlign: 'center',
-	    borderColor: '#bbb',
-	    padding: 10,
+	    paddingTop: 10,
+	    paddingBottom: 5,
+	    backgroundColor: '#eee'
+  	},
+  	dayOfWeek: {
+	    textAlign: 'center',
+	    paddingBottom: 5,
 	    backgroundColor: '#eee'
   	},
 	container: {
