@@ -10,19 +10,9 @@ class HomeScreen extends Component {
 		this.props.selectedDay(day);
 	}
 
-	renderSelectedDay(day) {
-		if (day) {
-			return (
-				<Text>
-					Selected Day: {day}
-				</Text>
-			)
-		}
-		return (
-			<Text>
-				Selected Day:
-			</Text>
-		)
+	getDayOfWeek(date) {
+	  	const dayOfWeek = new Date(date).getDay();    
+	  	return isNaN(dayOfWeek) ? null : ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'][dayOfWeek];
 	}
 
 	renderSelectedDay() {
@@ -30,6 +20,7 @@ class HomeScreen extends Component {
 			return (
 				<Text style={styles.text}>
 					{this.props.day.day.day}
+					{this.getDayOfWeek(this.props.day.day.dateString)}
 				</Text>
 			)
 		}
