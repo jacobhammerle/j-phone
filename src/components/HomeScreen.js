@@ -6,8 +6,18 @@ import { selectedDay } from '../actions';
 
 class HomeScreen extends Component {
 	onDayPress(day) {
-		console.log(this.props.day.day);
 		this.props.selectedDay(day);
+		console.log(this.props.day.day);
+		markSelectedDay(this.props.day.day.dateString);
+	}
+
+	markSelectedDay(date) {
+		return ({
+			date : {
+				selected: true, 
+				selectedColor: '#2DB1EF'
+			}
+		})
 	}
 
 	getDayOfWeek(date) {
@@ -43,7 +53,7 @@ class HomeScreen extends Component {
 					hideArrows={false}
 					hideExtraDays={true}
 					disableMonthChange={false}
-					firstDay={1}
+					markedDates={this.markSelectedDay()}
 				/>
 				{this.renderSelectedDay()}
 			</ScrollView>
@@ -66,19 +76,22 @@ const styles = {
   	},
 	dayNumber: {
 		fontSize: 32,
+		fontWeight: 'bold',
+		color: '#FFFFFF',
 	    textAlign: 'center',
 	    paddingTop: 10,
 	    paddingBottom: 5,
-	    backgroundColor: '#eee'
+	    backgroundColor: '#2DB1EF'
   	},
   	dayOfWeek: {
 	    textAlign: 'center',
+	    color: '#FFFFFF',
 	    paddingBottom: 5,
-	    backgroundColor: '#eee'
+	    backgroundColor: '#2DB1EF'
   	},
 	container: {
 	    flex: 1,
-	    backgroundColor: 'gray'
+	    backgroundColor: '#2DB1EF'
   	}
 }
 
