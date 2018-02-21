@@ -2,8 +2,19 @@ import React, { Component } from 'react';
 import { Calendar } from 'react-native-calendars';
 import { connect } from 'react-redux';
 import { ScrollView, View, Text } from 'react-native';
+<<<<<<< HEAD
 import { selectDay } from '../actions';
 // import Sound from 'react-native-sound';
+=======
+import { selectedDay } from '../actions';
+
+const formatDate = date => {
+	// date.day.dateString
+	//return date ? {'2018-02-27': {selected: true, color: '#2DB1EF'}} : {'2018-02-25': {selected: true, color: '#2DB1EF'}}
+	const fixedDate = '';
+	return date ? {[date.day.dateString]: {selected: true, color: '#2DB1EF'}} : {[fixedDate]: {selected: true, color: '#2DB1EF'}}
+}
+>>>>>>> master
 
 class HomeScreen extends Component {
 	state = {
@@ -11,6 +22,7 @@ class HomeScreen extends Component {
 	}
 
 	onDayPress(day) {
+<<<<<<< HEAD
 		const dateObj = {
 			[day.day.dateString]: {
 				selected: true,
@@ -23,6 +35,10 @@ class HomeScreen extends Component {
 		// To keep store updated so you can use elsewhere - might not be needed
 		// You might be able to get away with component level state
 		this.props.selectDay(day);
+=======
+		this.props.selectedDay(day);
+		console.log(this.props.selected);
+>>>>>>> master
 	}
 
 	getDayOfWeek(date) {
