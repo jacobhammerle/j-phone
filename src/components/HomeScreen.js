@@ -3,6 +3,7 @@ import { Calendar } from 'react-native-calendars';
 import { connect } from 'react-redux';
 import { ScrollView, View, Text } from 'react-native';
 import { selectedDay } from '../actions';
+import Sound from 'react-native-sound';
 
 const formatDate = date => {
 	// date.day.dateString
