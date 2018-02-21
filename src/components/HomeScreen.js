@@ -4,20 +4,15 @@ import { connect } from 'react-redux';
 import { ScrollView, View, Text } from 'react-native';
 import { selectedDay } from '../actions';
 
+const formatDate = date => {
+	// date.day.dateString
+	return date ? {'2018-02-27': {selected: true, color: '#2DB1EF'}} : {'2018-02-25': {selected: true, color: '#2DB1EF'}}
+}
+
 class HomeScreen extends Component {
+
 	onDayPress(day) {
 		this.props.selectedDay(day);
-		console.log(this.props.day.day);
-		markSelectedDay(this.props.day.day.dateString);
-	}
-
-	markSelectedDay(date) {
-		return ({
-			date : {
-				selected: true, 
-				selectedColor: '#2DB1EF'
-			}
-		})
 	}
 
 	getDayOfWeek(date) {
@@ -53,7 +48,7 @@ class HomeScreen extends Component {
 					hideArrows={false}
 					hideExtraDays={true}
 					disableMonthChange={false}
-					markedDates={this.markSelectedDay()}
+					markedDates={this.props.selected}
 				/>
 				{this.renderSelectedDay()}
 			</ScrollView>
@@ -97,7 +92,8 @@ const styles = {
 
 const mapStateToProps = state => {
 	return {
-		day: state.calendar.day
+		day: state.calendar.day,
+		selected: formatDate(state.calendar.day)
 	}
 }
 
