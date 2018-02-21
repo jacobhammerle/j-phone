@@ -3,17 +3,19 @@ import { Calendar } from 'react-native-calendars';
 import { connect } from 'react-redux';
 import { ScrollView, View, Text } from 'react-native';
 import { selectedDay } from '../actions';
-import Sound from 'react-native-sound';
 
 const formatDate = date => {
 	// date.day.dateString
-	return date ? {'2018-02-27': {selected: true, color: '#2DB1EF'}} : {'2018-02-25': {selected: true, color: '#2DB1EF'}}
+	//return date ? {'2018-02-27': {selected: true, color: '#2DB1EF'}} : {'2018-02-25': {selected: true, color: '#2DB1EF'}}
+	const fixedDate = '';
+	return date ? {[date.day.dateString]: {selected: true, color: '#2DB1EF'}} : {[fixedDate]: {selected: true, color: '#2DB1EF'}}
 }
 
 class HomeScreen extends Component {
 
 	onDayPress(day) {
 		this.props.selectedDay(day);
+		console.log(this.props.selected);
 	}
 
 	getDayOfWeek(date) {
