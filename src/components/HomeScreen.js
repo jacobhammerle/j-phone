@@ -2,22 +2,31 @@ import React, { Component } from 'react';
 import { Calendar } from 'react-native-calendars';
 import { connect } from 'react-redux';
 import { ScrollView, View, Text } from 'react-native';
-import { selectedDay } from '../actions';
-import Sound from 'react-native-sound';
-
-const formatDate = date => {
-	// date.day.dateString
-	return date ? {'2018-02-27': {selected: true, color: '#2DB1EF'}} : {'2018-02-25': {selected: true, color: '#2DB1EF'}}
-}
+import { selectDay } from '../actions';
+// import Sound from 'react-native-sound';
 
 class HomeScreen extends Component {
+	state = {
+		selectedDate: {}
+	}
 
 	onDayPress(day) {
-		this.props.selectedDay(day);
+		const dateObj = {
+			[day.day.dateString]: {
+				selected: true,
+				color: '#2DB1EF'
+			}
+		}
+
+		this.setState({ selectedDate: dateObj })
+
+		// To keep store updated so you can use elsewhere - might not be needed
+		// You might be able to get away with component level state
+		this.props.selectDay(day);
 	}
 
 	getDayOfWeek(date) {
-	  	const dayOfWeek = new Date(date).getDay();    
+	  	const dayOfWeek = new Date(date).getDay();
 	  	return isNaN(dayOfWeek) ? null : ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'][dayOfWeek];
 	}
 
@@ -49,7 +58,7 @@ class HomeScreen extends Component {
 					hideArrows={false}
 					hideExtraDays={true}
 					disableMonthChange={false}
-					markedDates={this.props.selected}
+					markedDates={this.state.selectedDate}
 				/>
 				{this.renderSelectedDay()}
 			</ScrollView>
@@ -93,9 +102,8 @@ const styles = {
 
 const mapStateToProps = state => {
 	return {
-		day: state.calendar.day,
-		selected: formatDate(state.calendar.day)
+		day: state.calendar.day
 	}
 }
 
-export default connect(mapStateToProps, { selectedDay })(HomeScreen);
+export default connect(mapStateToProps, { selectDay })(HomeScreen);
