@@ -1,20 +1,34 @@
 import React, { Component } from 'react';
 import { Calendar } from 'react-native-calendars';
 import { connect } from 'react-redux';
-import { ScrollView, View, Text } from 'react-native';
+import { ScrollView, TouchableOpacity, View, Text } from 'react-native';
 import { selectDay } from '../actions';
+import DateTimePicker from 'react-native-modal-datetime-picker';
 // import Sound from 'react-native-sound';
 
 class HomeScreen extends Component {
 	state = {
+		isDateTimePickerVisible: false,
 		selectedDate: {}
-	}
+	};
+
+	_showDateTimePicker = () => this.setState({ isDateTimePickerVisible: true });
+
+	_hideDateTimePicker = () => this.setState({ isDateTimePickerVisible: false });
+
+	_handleDatePicked = (date) => {
+	    console.log('A date has been picked: ', date);
+	    this._hideDateTimePicker();
+	};
 
 	onDayPress(day) {
 		const dateObj = {
 			[day.day.dateString]: {
 				selected: true,
 				color: '#2DB1EF'
+			},
+			'2018-02-12': {
+				marked: true
 			}
 		}
 
@@ -30,13 +44,23 @@ class HomeScreen extends Component {
 	renderSelectedDay() {
 		if (this.props.day) {
 			return (
-				<View>
+				<View style={{ flex: 1 }}>
 					<Text style={styles.dayNumber}>
 						{this.props.day.day.day}
 					</Text>
 					<Text style={styles.dayOfWeek}>
 						{this.getDayOfWeek(this.props.day.day.dateString)}
 					</Text>
+					<TouchableOpacity onPress={this._showDateTimePicker}>
+				        <Text>
+				        	Show DatePicker
+				        </Text>
+			        </TouchableOpacity>
+			        <DateTimePicker
+			          isVisible={this.state.isDateTimePickerVisible}
+			          onConfirm={this._handleDatePicked}
+			          onCancel={this._hideDateTimePicker}
+			        />
 				</View>
 			)
 		}
