@@ -44,7 +44,7 @@ class HomeScreen extends Component {
 	renderSelectedDay() {
 		if (this.props.day) {
 			return (
-				<View style={{ flex: 1 }}>
+				<View>
 					<Text style={styles.dayNumber}>
 						{this.props.day.day.day}
 					</Text>
@@ -52,14 +52,16 @@ class HomeScreen extends Component {
 						{this.getDayOfWeek(this.props.day.day.dateString)}
 					</Text>
 					<TouchableOpacity onPress={this._showDateTimePicker}>
-				        <Text>
-				        	Show DatePicker
+				        <Text style={styles.callButtonStyle}>
+				        	Call Time
 				        </Text>
 			        </TouchableOpacity>
 			        <DateTimePicker
 			          isVisible={this.state.isDateTimePickerVisible}
 			          onConfirm={this._handleDatePicked}
 			          onCancel={this._hideDateTimePicker}
+			          mode="time"
+			          titleIOS="Pick a call time"
 			        />
 				</View>
 			)
@@ -112,13 +114,25 @@ const styles = {
   	dayOfWeek: {
 	    textAlign: 'center',
 	    color: '#FFFFFF',
-	    paddingBottom: 5,
+	    paddingBottom: 10,
 	    backgroundColor: '#2DB1EF'
   	},
 	container: {
 	    flex: 1,
 	    backgroundColor: '#2DB1EF'
-  	}
+  	},
+  	callButtonStyle: {
+		textAlign: 'center',
+		backgroundColor: '#2DB1EF',
+		color: '#FFFFFF',
+		padding: 7,
+		marginLeft: 10,
+		marginRight: 10,
+		borderRadius: 5,
+		borderWidth: 1,
+		borderColor: '#FFFFFF',
+		alignSelf: 'center'
+	}
 }
 
 const mapStateToProps = state => {
