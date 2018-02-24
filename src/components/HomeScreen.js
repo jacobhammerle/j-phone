@@ -7,6 +7,10 @@ import DateTimePicker from 'react-native-modal-datetime-picker';
 // import Sound from 'react-native-sound';
 
 class HomeScreen extends Component {
+	componentDidMount() {
+
+	}
+	
 	state = {
 		isDateTimePickerVisible: false,
 		selectedDate: {},
@@ -33,6 +37,10 @@ class HomeScreen extends Component {
 			},
 			'2018-02-12': {
 				marked: true
+			},
+			'2018-02-16': {
+				selected: true, 
+				selectedColor: 'red'
 			}
 		}
 
