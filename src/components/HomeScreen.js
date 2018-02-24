@@ -9,7 +9,8 @@ import DateTimePicker from 'react-native-modal-datetime-picker';
 class HomeScreen extends Component {
 	state = {
 		isDateTimePickerVisible: false,
-		selectedDate: {}
+		selectedDate: {},
+		selectedCallTime: ''
 	};
 
 	_showDateTimePicker = () => this.setState({ isDateTimePickerVisible: true });
@@ -17,7 +18,10 @@ class HomeScreen extends Component {
 	_hideDateTimePicker = () => this.setState({ isDateTimePickerVisible: false });
 
 	_handleDatePicked = (date) => {
+		//const str = date;
+		//const callTime = str.slice(16, 20);
 	    console.log('A date has been picked: ', date);
+	    this.setState({ selectedCallTime: date });
 	    this._hideDateTimePicker();
 	};
 
