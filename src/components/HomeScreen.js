@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { ScrollView, TouchableOpacity, View, Text } from 'react-native';
 import { selectDay } from '../actions';
 import DateTimePicker from 'react-native-modal-datetime-picker';
-// import Sound from 'react-native-sound';
 
 class HomeScreen extends Component {
 	componentDidMount() {
@@ -22,8 +21,6 @@ class HomeScreen extends Component {
 	_hideDateTimePicker = () => this.setState({ isDateTimePickerVisible: false });
 
 	_handleDatePicked = (date) => {
-		//const str = date;
-		//const callTime = str.slice(16, 20);
 	    console.log('A date has been picked: ', date);
 	    this.setState({ selectedCallTime: date });
 	    this._hideDateTimePicker();
