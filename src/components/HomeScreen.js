@@ -22,9 +22,8 @@ class HomeScreen extends Component {
 
 	_handleDatePicked = (date) => {
 	    console.log('A date has been picked: ', date);
-	    this.setState({ selectedCallTime: date });
+	    
 	    this.props.dayCreate(date);
-	    console.log(this.props.call);
 	    this._hideDateTimePicker();
 	};
 

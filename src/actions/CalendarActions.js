@@ -13,14 +13,14 @@ export const selectDay = (day) => {
 
 export const dayCreate = (call) => {
 	const { currentUser } = firebase.auth();
+	console.log(call);
 
 	return (dispatch) => {
 		firebase.database().ref(`/users/${currentUser.uid}/days`)
 			.push(call)
 			.then(() => {
 				dispatch({ 
-					type: DAY_CREATE,
-					payload: call 
+					type: DAY_CREATE
 				});
 			});
 	}
