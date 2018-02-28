@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Calendar } from 'react-native-calendars';
 import { connect } from 'react-redux';
 import { ScrollView, TouchableOpacity, View, Text } from 'react-native';
-import { selectDay } from '../actions';
+import { selectDay, dayCreate } from '../actions';
 import DateTimePicker from 'react-native-modal-datetime-picker';
 
 class HomeScreen extends Component {
@@ -23,6 +23,8 @@ class HomeScreen extends Component {
 	_handleDatePicked = (date) => {
 	    console.log('A date has been picked: ', date);
 	    this.setState({ selectedCallTime: date });
+	    this.props.dayCreate(date);
+	    console.log(this.props.call);
 	    this._hideDateTimePicker();
 	};
 
@@ -40,7 +42,7 @@ class HomeScreen extends Component {
 				selectedColor: 'red'
 			}
 		}
-
+		console.log(this.props);
 		this.setState({ selectedDate: dateObj })
 		this.props.selectDay(day);
 	}
@@ -146,8 +148,9 @@ const styles = {
 
 const mapStateToProps = state => {
 	return {
-		day: state.calendar.day
+		day: state.calendar.day,
+		call: state.calendar.call
 	}
 }
 
-export default connect(mapStateToProps, { selectDay })(HomeScreen);
+export default connect(mapStateToProps, { selectDay, dayCreate })(HomeScreen);
