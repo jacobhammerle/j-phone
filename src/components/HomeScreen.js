@@ -12,9 +12,7 @@ class HomeScreen extends Component {
 	}
 	
 	state = {
-		isDateTimePickerVisible: false,
-		selectedDate: {},
-		selectedCallTime: ''
+		isDateTimePickerVisible: false
 	};
 
 	_showDateTimePicker = () => this.setState({ isDateTimePickerVisible: true });
@@ -22,9 +20,15 @@ class HomeScreen extends Component {
 	_hideDateTimePicker = () => this.setState({ isDateTimePickerVisible: false });
 
 	_handleDatePicked = (date) => {
-		const dayOfWeek = 'Tuesday';
+		const dayOfWeek = this.getDayOfWeek(this.props.day.day.dateString);
 		const callTime = '11:30 PM';
-	    this.props.dayCreate({ callTime: callTime, dayOfWeek: dayOfWeek, dateString: this.props.day.day.dateString });
+
+	    this.props.dayCreate({ 
+	    	callTime: callTime, 
+	    	dayOfWeek: dayOfWeek, 
+	    	dateString: this.props.day.day.dateString 
+	    });
+
 	    this._hideDateTimePicker();
 	};
 
