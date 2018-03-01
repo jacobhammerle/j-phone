@@ -6,9 +6,6 @@ import { selectDay, dayCreate } from '../actions';
 import DateTimePicker from 'react-native-modal-datetime-picker';
 
 class HomeScreen extends Component {
-	componentDidMount() {
-
-	}
 	
 	state = {
 		isDateTimePickerVisible: false,
@@ -84,7 +81,7 @@ class HomeScreen extends Component {
 				<Calendar
 					style={styles.calendar}
 					current={Date()}
-					minDate={'2018-02-01'}
+					minDate={'2017-11-01'}
 					maxDate={'2018-05-30'}
 					onDayPress={day => this.onDayPress({ day: day })}
 					monthFormat={'MMMM'}
