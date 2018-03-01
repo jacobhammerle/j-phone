@@ -12,12 +12,12 @@ export const selectDay = (day) => {
 	}
 }
 
-export const dayCreate = ({ callTime, dayOfWeek }) => {
+export const dayCreate = ({ callTime, dayOfWeek, dateString }) => {
 	const { currentUser } = firebase.auth();
 
 	return (dispatch) => {
 		firebase.database().ref(`/users/${currentUser.uid}/days`)
-			.push({ callTime, dayOfWeek })
+			.push({ callTime, dayOfWeek, dateString })
 			.then(() => {
 				dispatch({ 
 					type: DAY_CREATE

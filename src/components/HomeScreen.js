@@ -24,7 +24,7 @@ class HomeScreen extends Component {
 	_handleDatePicked = (date) => {
 		const dayOfWeek = 'Tuesday';
 		const callTime = '11:30 PM';
-	    this.props.dayCreate({ callTime: callTime, dayOfWeek: dayOfWeek });
+	    this.props.dayCreate({ callTime: callTime, dayOfWeek: dayOfWeek, dateString: this.props.day.day.dateString });
 	    this._hideDateTimePicker();
 	};
 
@@ -151,10 +151,12 @@ const mapStateToProps = state => {
 		return { ...val, uid }
 	})
 
+	console.log(state.days);
+
 	return {
 		day: state.calendar.day,
 		call: state.calendar.call,
-		days
+		activeDays: state.calendar.activeDays
 	}
 }
 
