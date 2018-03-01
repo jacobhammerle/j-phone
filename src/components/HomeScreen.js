@@ -42,7 +42,7 @@ class HomeScreen extends Component {
 				selectedColor: 'red'
 			}
 		}
-		console.log(this.props);
+
 		this.setState({ selectedDate: dateObj })
 		this.props.selectDay(day);
 	}
@@ -54,6 +54,9 @@ class HomeScreen extends Component {
 
 	renderSelectedDay() {
 		if (this.props.day) {
+
+			const findDay = _.find(this.props.activeDays, { 'dateString': this.props.day.day.dateString });
+
 			return (
 				<View>
 					<Text style={styles.dayNumber}>
@@ -62,11 +65,7 @@ class HomeScreen extends Component {
 					<Text style={styles.dayOfWeek}>
 						{this.getDayOfWeek(this.props.day.day.dateString)}
 					</Text>
-					<TouchableOpacity onPress={this._showDateTimePicker}>
-				        <Text style={styles.callButtonStyle}>
-				        	Call Time
-				        </Text>
-			        </TouchableOpacity>
+					{this.renderCallView(findDay)}
 			        <DateTimePicker
 			          mode="time"
 			          isVisible={this.state.isDateTimePickerVisible}
@@ -77,6 +76,24 @@ class HomeScreen extends Component {
 				</View>
 			)
 		}
+	}
+
+	renderCallView(findDay) {
+		if (findDay) {
+			return (
+				<Text style={styles.callButtonStyle}>
+		        	{findDay.callTime}
+		        </Text>
+			)
+		}
+
+		return (
+			<TouchableOpacity onPress={this._showDateTimePicker}>
+		        <Text style={styles.callButtonStyle}>
+		        	Call Time
+		        </Text>
+	        </TouchableOpacity>
+		)
 	}
 
 	render() {
@@ -147,12 +164,6 @@ const styles = {
 }
 
 const mapStateToProps = state => {
-	const days = _.map(state.days, (val, uid) => {
-		return { ...val, uid }
-	})
-
-	console.log(state.days);
-
 	return {
 		day: state.calendar.day,
 		call: state.calendar.call,
