@@ -5,3 +5,4 @@ export const LOGIN_USER_FAIL = 'login_user_fail';
 export const LOGIN_USER = 'login_user';
 export const SELECTED_DAY = 'selected_day';
 export const DAY_CREATE = 'day_create';
+export const DAY_FETCH_SUCCESS = 'day_fetch_success';

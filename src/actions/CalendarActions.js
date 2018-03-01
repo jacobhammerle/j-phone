@@ -1,7 +1,8 @@
 import firebase from 'firebase';
 import {
 	SELECTED_DAY,
-	DAY_CREATE
+	DAY_CREATE,
+	DAY_FETCH_SUCCESS
 } from './types';
 
 export const selectDay = (day) => {
@@ -22,5 +23,16 @@ export const dayCreate = ({ callTime, dayOfWeek }) => {
 					type: DAY_CREATE
 				});
 			});
+	}
+}
+
+export const dayFetch = () => {
+	const { currentUser } = firebase.auth();
+
+	return (dispatch) => {
+		firebase.database().ref(`/users/${currentUser.uid}/days`)
+			.on('value', snapshot => {
+				dispatch({ type: DAY_FETCH_SUCCESS, payload: snapshot.val() });
+			})
 	}
 }

@@ -1,11 +1,15 @@
+import _ from 'lodash';
 import React, { Component } from 'react';
 import { Calendar } from 'react-native-calendars';
 import { connect } from 'react-redux';
 import { ScrollView, TouchableOpacity, View, Text } from 'react-native';
-import { selectDay, dayCreate } from '../actions';
+import { selectDay, dayCreate, dayFetch } from '../actions';
 import DateTimePicker from 'react-native-modal-datetime-picker';
 
 class HomeScreen extends Component {
+	componentWillMount() {
+		this.props.dayFetch();
+	}
 	
 	state = {
 		isDateTimePickerVisible: false,
@@ -143,10 +147,15 @@ const styles = {
 }
 
 const mapStateToProps = state => {
+	const days = _.map(state.days, (val, uid) => {
+		return { ...val, uid }
+	})
+
 	return {
 		day: state.calendar.day,
-		call: state.calendar.call
+		call: state.calendar.call,
+		days
 	}
 }
 
-export default connect(mapStateToProps, { selectDay, dayCreate })(HomeScreen);
+export default connect(mapStateToProps, { selectDay, dayCreate, dayFetch })(HomeScreen);
