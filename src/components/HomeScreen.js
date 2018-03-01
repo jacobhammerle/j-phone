@@ -21,9 +21,9 @@ class HomeScreen extends Component {
 	_hideDateTimePicker = () => this.setState({ isDateTimePickerVisible: false });
 
 	_handleDatePicked = (date) => {
-	    console.log('A date has been picked: ', date);
-	    
-	    this.props.dayCreate(date);
+		const dayOfWeek = 'Tuesday';
+		const callTime = '11:30 PM';
+	    this.props.dayCreate({ callTime: callTime, dayOfWeek: dayOfWeek });
 	    this._hideDateTimePicker();
 	};
 
@@ -67,10 +67,10 @@ class HomeScreen extends Component {
 				        </Text>
 			        </TouchableOpacity>
 			        <DateTimePicker
+			          mode="time"
 			          isVisible={this.state.isDateTimePickerVisible}
 			          onConfirm={this._handleDatePicked}
 			          onCancel={this._hideDateTimePicker}
-			          mode="time"
 			          titleIOS="Pick a call time"
 			        />
 				</View>
