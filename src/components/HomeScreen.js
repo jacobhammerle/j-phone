@@ -26,7 +26,8 @@ class HomeScreen extends Component {
 	    this.props.dayCreate({ 
 	    	callTime: callTime, 
 	    	dayOfWeek: dayOfWeek, 
-	    	dateString: this.props.day.day.dateString 
+	    	dateString: this.props.day.day.dateString,
+	    	completed: false
 	    });
 
 	    this._hideDateTimePicker();
@@ -38,10 +39,10 @@ class HomeScreen extends Component {
 				selected: true,
 				color: '#2DB1EF'
 			},
-			'2018-02-12': {
+			'2018-03-12': {
 				marked: true
 			},
-			'2018-02-16': {
+			'2018-03-16': {
 				selected: true, 
 				selectedColor: 'red'
 			}
@@ -85,7 +86,7 @@ class HomeScreen extends Component {
 	renderCallView(findDay) {
 		if (findDay) {
 			return (
-				<Text style={styles.callButtonStyle}>
+				<Text style={styles.callSetStyle}>
 		        	{findDay.callTime}
 		        </Text>
 			)
@@ -163,6 +164,17 @@ const styles = {
 		borderRadius: 5,
 		borderWidth: 1,
 		borderColor: '#FFFFFF',
+		alignSelf: 'center'
+	},
+	callSetStyle: {
+		textAlign: 'center',
+		backgroundColor: '#2DB1EF',
+		fontSize: 30,
+		color: '#FFFFFF',
+		padding: 7,
+		marginLeft: 10,
+		marginRight: 10,
+		borderRadius: 5,
 		alignSelf: 'center'
 	}
 }
