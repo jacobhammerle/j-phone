@@ -23,8 +23,10 @@ class HomeScreen extends Component {
 		const dayOfWeek = this.getDayOfWeek(this.props.day.day.dateString);
 		const callTime = '11:30 PM';
 
+		const dateString = date.toString();
+
 	    this.props.dayCreate({ 
-	    	callTime: callTime, 
+	    	callTime: this.formatAMPM(date), 
 	    	dayOfWeek: dayOfWeek, 
 	    	dateString: this.props.day.day.dateString,
 	    	completed: false
@@ -55,6 +57,17 @@ class HomeScreen extends Component {
 	getDayOfWeek(date) {
 	  	const dayOfWeek = new Date(date).getDay();
 	  	return isNaN(dayOfWeek) ? null : ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'][dayOfWeek];
+	}
+
+	formatAMPM(date) {
+		var hours = date.getHours();
+		var minutes = date.getMinutes();
+		var ampm = hours >= 12 ? 'PM' : 'AM';
+		hours = hours % 12;
+		hours = hours ? hours : 12;
+		minutes = minutes < 10 ? '0'+minutes : minutes;
+		var strTime = hours + ':' + minutes + ' ' + ampm;
+		return strTime;
 	}
 
 	renderSelectedDay() {
