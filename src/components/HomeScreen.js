@@ -3,12 +3,16 @@ import React, { Component } from 'react';
 import { Calendar } from 'react-native-calendars';
 import { connect } from 'react-redux';
 import { ScrollView, TouchableOpacity, View, Text } from 'react-native';
-import { selectDay, dayCreate, dayFetch } from '../actions';
+import { selectDay, dayUpdate, dayCreate, dayFetch } from '../actions';
 import DateTimePicker from 'react-native-modal-datetime-picker';
 
 class HomeScreen extends Component {
 	componentWillMount() {
 		this.props.dayFetch();
+
+		_.each(this.props.activeDays, (value, prop) => {
+			this.props.dayUpdate({ prop, value })
+		})
 	}
 	
 	state = {
@@ -200,4 +204,4 @@ const mapStateToProps = state => {
 	}
 }
 
-export default connect(mapStateToProps, { selectDay, dayCreate, dayFetch })(HomeScreen);
+export default connect(mapStateToProps, { selectDay, dayUpdate, dayCreate, dayFetch })(HomeScreen);

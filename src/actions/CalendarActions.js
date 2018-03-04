@@ -1,5 +1,6 @@
 import firebase from 'firebase';
 import {
+	DAY_UPDATE,
 	SELECTED_DAY,
 	DAY_CREATE,
 	DAY_FETCH_SUCCESS
@@ -11,6 +12,11 @@ export const selectDay = (day) => {
 		payload: day
 	}
 }
+
+export const dayUpdate = ({ prop, value }) => ({
+  type: DAY_UPDATE,
+  payload: { prop, value }
+})
 
 export const dayCreate = ({ callTime, dayOfWeek, dateString, completed }) => {
 	const { currentUser } = firebase.auth();
