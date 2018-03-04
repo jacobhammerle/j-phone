@@ -1,7 +1,8 @@
 import React from 'react';
-import { Scene, Router } from 'react-native-router-flux';
+import { Scene, Router, Actions } from 'react-native-router-flux';
 import LoginForm from './components/LoginForm';
 import HomeScreen from './components/HomeScreen';
+import UserProfile from './components/UserProfile';
 
 const RouterComponent = () => {
 	return (
@@ -12,10 +13,17 @@ const RouterComponent = () => {
 				</Scene>
 				<Scene key="main">
 					<Scene 
+						leftTitle="Profile"
+						onLeft={() => Actions.Profile()} 
 						key="HomeScreen" 
 						component={HomeScreen} 
 						title="Calendar"
 						initial 
+					/>
+					<Scene 
+						key="Profile" 
+						component={UserProfile} 
+						title="Profile"
 					/>
 				</Scene>
 			</Scene>
