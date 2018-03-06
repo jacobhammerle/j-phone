@@ -14,17 +14,20 @@ export const selectDay = (day) => {
 	}
 }
 
-export const dayUpdate = ({ prop, value }) => ({
-  type: DAY_UPDATE,
-  payload: { prop, value }
-})
+export const dayUpdate = ({ prop, value }) => {
+	return {
+		type: DAY_UPDATE,
+		payload: {prop, value }
+	}
+}
 
 export const dayCreate = ({ callTime, dayOfWeek, dateString, completed }) => {
 	const { currentUser } = firebase.auth();
+	const id = currentUser.uid;
 
 	return (dispatch) => {
 		firebase.database().ref(`/users/${currentUser.uid}/days`)
-			.push({ callTime, dayOfWeek, dateString, completed })
+			.push({ callTime, dayOfWeek, dateString, completed, id })
 			.then(() => {
 				dispatch({ 
 					type: DAY_CREATE

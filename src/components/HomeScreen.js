@@ -10,9 +10,10 @@ class HomeScreen extends Component {
 	componentWillMount() {
 		this.props.dayFetch();
 
-		_.each(this.props.activeDays, (value, prop) => {
-			this.props.dayUpdate({ prop, value })
-		})
+		//_.each(this.props.days, (value, prop) => {
+			//this.props.dayUpdate({ prop, value });
+		//})
+		//console.log(this.props);
 	}
 	
 	state = {
@@ -28,7 +29,11 @@ class HomeScreen extends Component {
 
 		const dateString = date.toString();
 
-		console.log(this.props.activeDays[1]);
+		//console.log(this.props.activeDays, { uid: this.props.activeDays.uid });
+
+		//console.log(this.props);
+
+		//console.log(Object.keys(this.props.activeDays));
 
 	    this.props.dayCreate({ 
 	    	callTime: this.formatAMPM(date), 
@@ -36,6 +41,12 @@ class HomeScreen extends Component {
 	    	dateString: this.props.day.day.dateString,
 	    	completed: false
 	    });
+
+	    _.each(this.props.activeDays, (value, prop) => {
+			this.props.dayUpdate({ prop, value });
+		})
+
+		console.log(this.props);
 
 	    this._hideDateTimePicker();
 	};
@@ -205,10 +216,12 @@ const styles = {
 }
 
 const mapStateToProps = state => {
+	console.log('State', state)
 	return {
 		day: state.calendar.day,
 		call: state.calendar.call,
-		activeDays: state.calendar.activeDays
+		activeDays: state.calendar.activeDays,
+		updatedDays: state.calendar.prop
 	}
 }
 

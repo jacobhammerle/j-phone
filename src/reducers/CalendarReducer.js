@@ -17,10 +17,12 @@ export default (state = INITIAL_STATE, action) => {
 		case SELECTED_DAY:
 			return { ...state, day: action.payload };
 		case DAY_FETCH_SUCCESS:
-			console.log(action.payload);
+			//console.log(action.payload);
+			//console.log(Object.keys(action.payload));
 			return { ...state, activeDays: action.payload };
 		case DAY_UPDATE:
-			console(action.payload.value);
+			console.log(action.payload);
+			// action.payload === { prop: 'name', value: 'jane' }
 			return { ...state, [action.payload.prop]: action.payload.value }
 		default:
 			return state;
