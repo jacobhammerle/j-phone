@@ -25,9 +25,10 @@ class HomeScreen extends Component {
 
 	_handleDatePicked = (date) => {
 		const dayOfWeek = this.getDayOfWeek(this.props.day.day.dateString);
-		const callTime = '11:30 PM';
 
 		const dateString = date.toString();
+
+		console.log(this.props.activeDays[1]);
 
 	    this.props.dayCreate({ 
 	    	callTime: this.formatAMPM(date), 
@@ -103,9 +104,16 @@ class HomeScreen extends Component {
 	renderCallView(findDay) {
 		if (findDay) {
 			return (
-				<Text style={styles.callSetStyle}>
-		        	{findDay.callTime}
-		        </Text>
+				<View>
+					<Text style={styles.callSetStyle}>
+			        	{findDay.callTime}
+			        </Text>
+			        <TouchableOpacity onPress={this._showDateTimePicker}>
+			        	<Text style={styles.callButtonStyle}>
+			        		Change Time
+			        	</Text>
+		        	</TouchableOpacity>
+	        	</View>
 			)
 		}
 

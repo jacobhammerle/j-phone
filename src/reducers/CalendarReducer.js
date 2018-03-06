@@ -1,11 +1,15 @@
 import { 
 	SELECTED_DAY,
+	DAY_UPDATE,
 	DAY_FETCH_SUCCESS
 } from '../actions/types';
 
 const INITIAL_STATE = { 
 	day: '',
-	call: ''
+	callTime: '',
+	completed: false,
+	dateString: '',
+	dayOfWeek: ''
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -15,6 +19,9 @@ export default (state = INITIAL_STATE, action) => {
 		case DAY_FETCH_SUCCESS:
 			console.log(action.payload);
 			return { ...state, activeDays: action.payload };
+		case DAY_UPDATE:
+			console(action.payload.value);
+			return { ...state, [action.payload.prop]: action.payload.value }
 		default:
 			return state;
 	}
