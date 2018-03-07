@@ -66,19 +66,11 @@ class HomeScreen extends Component {
 			}
 		}
 
-		const selectedDaysFound = _.find(this.props.activeDays, { 'dateString': day.day.dateString });
-
 		const selectedDayFound = _.find(this.props.activeDays , (value, key) => {
-				console.log(key);
+				if (value.dateString === day.day.dateString) {
+					console.log(key);
+				}
 		});
-
-		//for (const k in this.props.activeDays){
-		   //if (this.props.activeDays.hasOwnProperty(k)) {
-		        //console.log("Key is " + k + ", value is" + this.props.activeDays[k]);
-		   //}
-		//}
-
-		//console.log(Object.keys(selectedDayFound)[0]);
 
 		this.setState({ selectedDate: dateObj })
 		this.props.selectDay(day);
