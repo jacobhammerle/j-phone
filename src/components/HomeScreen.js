@@ -24,7 +24,7 @@ class HomeScreen extends Component {
 
 	_hideDateTimePicker = () => this.setState({ isDateTimePickerVisible: false });
 
-	_handleDatePicked = (date) => {
+	_handleNewDatePicked = (date) => {
 		const dayOfWeek = this.getDayOfWeek(this.props.day.day.dateString);
 
 		const dateString = date.toString();
@@ -51,6 +51,28 @@ class HomeScreen extends Component {
 	    this._hideDateTimePicker();
 	};
 
+	_handleUpdatedDatePicked = (date) => {
+		const dayOfWeek = this.getDayOfWeek(this.props.day.day.dateString);
+		const dateString = date.toString();
+
+		this.grabSelectedKey(this.props.day.day.dateString);
+
+	    //this.props.daySave({ 
+	    	//callTime: this.formatAMPM(date), 
+	    	//dayOfWeek: dayOfWeek, 
+	    	//dateString: this.props.day.day.dateString,
+	    	//completed: false
+	    //});
+
+	    //_.each(this.props.activeDays, (value, prop) => {
+			//this.props.dayUpdate({ prop, value });
+		//})
+
+		//console.log(this.props);
+
+	    this._hideDateTimePicker();
+	};
+
 	onDayPress(day) {
 		const dateObj = {
 			[day.day.dateString]: {
@@ -66,14 +88,20 @@ class HomeScreen extends Component {
 			}
 		}
 
-		const selectedDayFound = _.find(this.props.activeDays , (value, key) => {
-				if (value.dateString === day.day.dateString) {
-					console.log(key);
-				}
-		});
+		var selectedKey = this.grabSelectedKey(day.day.dateString);
+
+		console.log(selectedKey);
 
 		this.setState({ selectedDate: dateObj })
 		this.props.selectDay(day);
+	}
+
+	grabSelectedKey(dateString) {
+		_.find(this.props.activeDays , (value, key) => {
+				if (value.dateString === dateString) {
+					console.log(key);
+				}
+		});
 	}
 
 	getDayOfWeek(date) {
@@ -106,13 +134,6 @@ class HomeScreen extends Component {
 						{this.getDayOfWeek(this.props.day.day.dateString)}
 					</Text>
 					{this.renderCallView(findDay)}
-			        <DateTimePicker
-			          mode="time"
-			          isVisible={this.state.isDateTimePickerVisible}
-			          onConfirm={this._handleDatePicked}
-			          onCancel={this._hideDateTimePicker}
-			          titleIOS="Pick a call time"
-			        />
 				</View>
 			)
 		}
@@ -130,16 +151,33 @@ class HomeScreen extends Component {
 			        		Change Time
 			        	</Text>
 		        	</TouchableOpacity>
+		        	<DateTimePicker
+			          mode="time"
+			          isVisible={this.state.isDateTimePickerVisible}
+			          onConfirm={this._handleUpdatedDatePicked}
+			          onCancel={this._hideDateTimePicker}
+			          titleIOS="Pick a call time"
+					/>
 	        	</View>
 			)
 		}
 
 		return (
-			<TouchableOpacity onPress={this._showDateTimePicker}>
-		        <Text style={styles.callButtonStyle}>
-		        	Call Time
-		        </Text>
-	        </TouchableOpacity>
+			<View>
+				<TouchableOpacity onPress={this._showDateTimePicker}>
+			        <Text style={styles.callButtonStyle}>
+			        	Call Time
+			        </Text>
+
+		        </TouchableOpacity>
+		        <DateTimePicker
+		          mode="time"
+		          isVisible={this.state.isDateTimePickerVisible}
+		          onConfirm={this._handleNewDatePicked}
+		          onCancel={this._hideDateTimePicker}
+		          titleIOS="Pick a call time"
+				/>
+			</View>
 		)
 	}
 
