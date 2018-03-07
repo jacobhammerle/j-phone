@@ -23,11 +23,10 @@ export const dayUpdate = ({ prop, value }) => {
 
 export const dayCreate = ({ callTime, dayOfWeek, dateString, completed }) => {
 	const { currentUser } = firebase.auth();
-	const id = currentUser.uid;
 
 	return (dispatch) => {
 		firebase.database().ref(`/users/${currentUser.uid}/days`)
-			.push({ callTime, dayOfWeek, dateString, completed, id })
+			.push({ callTime, dayOfWeek, dateString, completed })
 			.then(() => {
 				dispatch({ 
 					type: DAY_CREATE

@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { Calendar } from 'react-native-calendars';
 import { connect } from 'react-redux';
 import { ScrollView, TouchableOpacity, View, Text } from 'react-native';
-import { selectDay, dayUpdate, dayCreate, dayFetch } from '../actions';
+import { selectDay, dayUpdate, dayCreate, dayFetch, daySave } from '../actions';
 import DateTimePicker from 'react-native-modal-datetime-picker';
 
 class HomeScreen extends Component {
@@ -55,20 +55,15 @@ class HomeScreen extends Component {
 		const dayOfWeek = this.getDayOfWeek(this.props.day.day.dateString);
 		const dateString = date.toString();
 
-		this.grabSelectedKey(this.props.day.day.dateString);
+		const getKeyByValue = _.findKey(this.props.activeDays, ['dateString', this.props.day.day.dateString]);
 
-	    //this.props.daySave({ 
-	    	//callTime: this.formatAMPM(date), 
-	    	//dayOfWeek: dayOfWeek, 
-	    	//dateString: this.props.day.day.dateString,
-	    	//completed: false
-	    //});
-
-	    //_.each(this.props.activeDays, (value, prop) => {
-			//this.props.dayUpdate({ prop, value });
-		//})
-
-		//console.log(this.props);
+	    this.props.daySave({ 
+	    	callTime: this.formatAMPM(date), 
+	    	dayOfWeek: dayOfWeek, 
+	    	dateString: this.props.day.day.dateString,
+	    	completed: false,
+	    	uid: getKeyByValue
+	    });
 
 	    this._hideDateTimePicker();
 	};
@@ -88,20 +83,8 @@ class HomeScreen extends Component {
 			}
 		}
 
-		var selectedKey = this.grabSelectedKey(day.day.dateString);
-
-		console.log(selectedKey);
-
 		this.setState({ selectedDate: dateObj })
 		this.props.selectDay(day);
-	}
-
-	grabSelectedKey(dateString) {
-		_.find(this.props.activeDays , (value, key) => {
-				if (value.dateString === dateString) {
-					console.log(key);
-				}
-		});
 	}
 
 	getDayOfWeek(date) {
@@ -260,12 +243,6 @@ const styles = {
 }
 
 const mapStateToProps = state => {
-	console.log('State', state)
-
-	//const updatedDays = _.map(state.calendar, (val, uid) => {
-		//return { ...val, uid }
-	//})
-
 	return {
 		day: state.calendar.day,
 		call: state.calendar.call,
@@ -273,4 +250,4 @@ const mapStateToProps = state => {
 	}
 }
 
-export default connect(mapStateToProps, { selectDay, dayUpdate, dayCreate, dayFetch })(HomeScreen);
+export default connect(mapStateToProps, { selectDay, dayUpdate, dayCreate, dayFetch, daySave })(HomeScreen);
