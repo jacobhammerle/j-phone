@@ -66,6 +66,20 @@ class HomeScreen extends Component {
 			}
 		}
 
+		const selectedDaysFound = _.find(this.props.activeDays, { 'dateString': day.day.dateString });
+
+		const selectedDayFound = _.find(this.props.activeDays , (value, key) => {
+				console.log(key);
+		});
+
+		//for (const k in this.props.activeDays){
+		   //if (this.props.activeDays.hasOwnProperty(k)) {
+		        //console.log("Key is " + k + ", value is" + this.props.activeDays[k]);
+		   //}
+		//}
+
+		//console.log(Object.keys(selectedDayFound)[0]);
+
 		this.setState({ selectedDate: dateObj })
 		this.props.selectDay(day);
 	}
@@ -217,11 +231,15 @@ const styles = {
 
 const mapStateToProps = state => {
 	console.log('State', state)
+
+	//const updatedDays = _.map(state.calendar, (val, uid) => {
+		//return { ...val, uid }
+	//})
+
 	return {
 		day: state.calendar.day,
 		call: state.calendar.call,
-		activeDays: state.calendar.activeDays,
-		updatedDays: state.calendar.prop
+		activeDays: state.calendar.activeDays
 	}
 }
 
