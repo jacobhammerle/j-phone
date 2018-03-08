@@ -111,19 +111,24 @@ class HomeScreen extends Component {
 		if (findDay) {
 			return (
 				<View style={styles.callDetail}>
+					<Text style={styles.staticCallText}>
+						Call Time:
+					</Text>
 					<Text style={styles.callSetStyle}>
 			        	{findDay.callTime}
 			        </Text>
-			        <TouchableOpacity onPress={this._showDateTimePicker}>
-			        	<Text style={styles.callButtonStyle}>
-			        		Change Time
-			        	</Text>
-		        	</TouchableOpacity>
-		        	<TouchableOpacity onPress={() => this.deleteSelectedDay(findDay)}>
-			        	<Text style={styles.callButtonStyle}>
-			        		Delete
-			        	</Text>
-		        	</TouchableOpacity>
+			        <View style={styles.buttonContainer}>
+				        <TouchableOpacity onPress={this._showDateTimePicker} style={styles.changeTimeBtn}>
+				        	<Text style={styles.callButtonStyle}>
+				        		Change Time
+				        	</Text>
+			        	</TouchableOpacity>
+			        	<TouchableOpacity onPress={() => this.deleteSelectedDay(findDay)} style={styles.deleteBtn}>
+				        	<Text style={styles.callButtonStyle}>
+				        		Delete
+				        	</Text>
+			        	</TouchableOpacity>
+		        	</View>
 		        	<DateTimePicker
 			          mode="time"
 			          isVisible={this.state.isDateTimePickerVisible}
@@ -236,8 +241,23 @@ const styles = {
 		borderRadius: 5,
 		alignSelf: 'center'
 	},
+	staticCallText: {
+		alignSelf: 'center',
+		color: '#FFFFFF'
+	},
 	callDetail: {
 		height: 200
+	},
+	buttonContainer: {
+		flex: 1, 
+		flexDirection: 'row',
+		alignSelf: 'center'
+	},
+	changeTimeBtn: {
+		width: 130
+	},
+	deleteBtn: {
+		width: 80
 	}
 }
 
