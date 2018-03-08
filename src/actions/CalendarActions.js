@@ -1,23 +1,14 @@
 import firebase from 'firebase';
 import {
-	DAY_UPDATE,
 	SELECTED_DAY,
 	DAY_CREATE,
-	DAY_FETCH_SUCCESS,
-	CLEAR_DAY
+	DAY_FETCH_SUCCESS
 } from './types';
 
 export const selectDay = (day) => {
 	return {
 		type: SELECTED_DAY,
 		payload: day
-	}
-}
-
-export const dayUpdate = ({ prop, value }) => {
-	return {
-		type: DAY_UPDATE,
-		payload: {prop, value }
 	}
 }
 
@@ -52,15 +43,14 @@ export const daySave = ({ callTime, dayOfWeek, dateString, completed, uid }) => 
   return (dispatch) => {
     firebase.database().ref(`/users/${currentUser.uid}/days/${uid}`)
       .set({ callTime, dayOfWeek, dateString, completed })
-      .then(() => {
-        dispatch({ type: CLEAR_DAY })
-        Actions.pop()
-      })
   }
 }
 
-export const clearDay = () => {
-    return (dispatch) => dispatch({
-        type: CLEAR_DAY
-    })
+export const dayDelete = ({ uid }) => {
+  const { currentUser } = firebase.auth()
+
+  return () => {
+    firebase.database().ref(`/users/${currentUser.uid}/employees/${uid}`)
+      .remove()
+  }
 }

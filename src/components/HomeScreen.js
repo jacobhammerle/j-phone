@@ -3,17 +3,13 @@ import React, { Component } from 'react';
 import { Calendar } from 'react-native-calendars';
 import { connect } from 'react-redux';
 import { ScrollView, TouchableOpacity, View, Text } from 'react-native';
-import { selectDay, dayUpdate, dayCreate, dayFetch, daySave } from '../actions';
+import { selectDay, dayCreate, dayFetch, daySave, dayDelete } from '../actions';
 import DateTimePicker from 'react-native-modal-datetime-picker';
 
 class HomeScreen extends Component {
 	componentWillMount() {
 		this.props.dayFetch();
-
-		//_.each(this.props.days, (value, prop) => {
-			//this.props.dayUpdate({ prop, value });
-		//})
-		//console.log(this.props);
+		console.log(this.props);
 	}
 	
 	state = {
@@ -29,12 +25,6 @@ class HomeScreen extends Component {
 
 		const dateString = date.toString();
 
-		//console.log(this.props.activeDays, { uid: this.props.activeDays.uid });
-
-		//console.log(this.props);
-
-		//console.log(Object.keys(this.props.activeDays));
-
 	    this.props.dayCreate({ 
 	    	callTime: this.formatAMPM(date), 
 	    	dayOfWeek: dayOfWeek, 
@@ -42,19 +32,12 @@ class HomeScreen extends Component {
 	    	completed: false
 	    });
 
-	    _.each(this.props.activeDays, (value, prop) => {
-			this.props.dayUpdate({ prop, value });
-		})
-
-		console.log(this.props);
-
 	    this._hideDateTimePicker();
 	};
 
 	_handleUpdatedDatePicked = (date) => {
 		const dayOfWeek = this.getDayOfWeek(this.props.day.day.dateString);
 		const dateString = date.toString();
-
 		const getKeyByValue = _.findKey(this.props.activeDays, ['dateString', this.props.day.day.dateString]);
 
 	    this.props.daySave({ 
@@ -85,6 +68,8 @@ class HomeScreen extends Component {
 
 		this.setState({ selectedDate: dateObj })
 		this.props.selectDay(day);
+
+		console.log(this.props);
 	}
 
 	getDayOfWeek(date) {
@@ -134,6 +119,11 @@ class HomeScreen extends Component {
 			        		Change Time
 			        	</Text>
 		        	</TouchableOpacity>
+		        	<TouchableOpacity onDelete={this.deleteSelectedDay(findDay)}>
+			        	<Text style={styles.callButtonStyle}>
+			        		Delete
+			        	</Text>
+		        	</TouchableOpacity>
 		        	<DateTimePicker
 			          mode="time"
 			          isVisible={this.state.isDateTimePickerVisible}
@@ -162,6 +152,13 @@ class HomeScreen extends Component {
 				/>
 			</View>
 		)
+	}
+
+	deleteSelectedDay(findDay) {
+		console.log("we here");
+		const getKeyByValue = _.findKey(this.props.activeDays, ['dateString', findDay.dateString]);
+		console.log(getKeyByValue);
+		this.props.dayDelete({ getKeyByValue });
 	}
 
 	render() {
@@ -250,4 +247,4 @@ const mapStateToProps = state => {
 	}
 }
 
-export default connect(mapStateToProps, { selectDay, dayUpdate, dayCreate, dayFetch, daySave })(HomeScreen);
+export default connect(mapStateToProps, { selectDay, dayCreate, dayFetch, daySave, dayDelete })(HomeScreen);

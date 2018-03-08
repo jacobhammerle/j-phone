@@ -1,6 +1,5 @@
 import { 
 	SELECTED_DAY,
-	DAY_UPDATE,
 	DAY_FETCH_SUCCESS
 } from '../actions/types';
 
@@ -18,9 +17,6 @@ export default (state = INITIAL_STATE, action) => {
 			return { ...state, day: action.payload };
 		case DAY_FETCH_SUCCESS:
 			return { ...state, activeDays: action.payload };
-		case DAY_UPDATE:
-			// action.payload === { prop: 'name', value: 'jane' }
-			return { ...state, [action.payload.prop]: action.payload.value }
 		default:
 			return state;
 	}
