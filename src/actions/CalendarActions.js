@@ -2,7 +2,9 @@ import firebase from 'firebase';
 import {
 	SELECTED_DAY,
 	DAY_CREATE,
-	DAY_FETCH_SUCCESS
+	DAY_FETCH_SUCCESS,
+	DAY_SAVE,
+	DAY_DELETE
 } from './types';
 
 export const selectDay = (day) => {
@@ -50,7 +52,7 @@ export const dayDelete = ({ uid }) => {
   const { currentUser } = firebase.auth()
 
   return () => {
-    firebase.database().ref(`/users/${currentUser.uid}/employees/${uid}`)
+    firebase.database().ref(`/users/${currentUser.uid}/days/${uid}`)
       .remove()
   }
 }

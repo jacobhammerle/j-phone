@@ -61,8 +61,8 @@ class HomeScreen extends Component {
 				marked: true
 			},
 			'2018-03-16': {
-				selected: true, 
-				selectedColor: 'red'
+				marked: true, 
+				color: 'red'
 			}
 		}
 
@@ -110,7 +110,7 @@ class HomeScreen extends Component {
 	renderCallView(findDay) {
 		if (findDay) {
 			return (
-				<View>
+				<View style={styles.callDetail}>
 					<Text style={styles.callSetStyle}>
 			        	{findDay.callTime}
 			        </Text>
@@ -119,7 +119,7 @@ class HomeScreen extends Component {
 			        		Change Time
 			        	</Text>
 		        	</TouchableOpacity>
-		        	<TouchableOpacity onDelete={this.deleteSelectedDay(findDay)}>
+		        	<TouchableOpacity onPress={() => this.deleteSelectedDay(findDay)}>
 			        	<Text style={styles.callButtonStyle}>
 			        		Delete
 			        	</Text>
@@ -136,7 +136,7 @@ class HomeScreen extends Component {
 		}
 
 		return (
-			<View>
+			<View style={styles.callDetail}>
 				<TouchableOpacity onPress={this._showDateTimePicker}>
 			        <Text style={styles.callButtonStyle}>
 			        	Call Time
@@ -155,15 +155,16 @@ class HomeScreen extends Component {
 	}
 
 	deleteSelectedDay(findDay) {
+		console.log(findDay);
 		console.log("we here");
 		const getKeyByValue = _.findKey(this.props.activeDays, ['dateString', findDay.dateString]);
 		console.log(getKeyByValue);
-		this.props.dayDelete({ getKeyByValue });
+		this.props.dayDelete({ uid: getKeyByValue });
 	}
 
 	render() {
 		return (
-			<ScrollView style={styles.container}>
+			<View style={styles.container}>
 				<Calendar
 					style={styles.calendar}
 					current={Date()}
@@ -177,7 +178,7 @@ class HomeScreen extends Component {
 					markedDates={this.state.selectedDate}
 				/>
 				{this.renderSelectedDay()}
-			</ScrollView>
+			</View>
 		)
 	}
 }
@@ -196,13 +197,11 @@ const styles = {
 	    height: 350
   	},
 	dayNumber: {
-		fontSize: 32,
+		fontSize: 40,
 		fontWeight: 'bold',
 		color: '#FFFFFF',
 	    textAlign: 'center',
-	    paddingTop: 10,
-	    paddingBottom: 5,
-	    backgroundColor: '#2DB1EF'
+	    paddingTop: 15
   	},
   	dayOfWeek: {
 	    textAlign: 'center',
@@ -236,6 +235,9 @@ const styles = {
 		marginRight: 10,
 		borderRadius: 5,
 		alignSelf: 'center'
+	},
+	callDetail: {
+		height: 200
 	}
 }
 
