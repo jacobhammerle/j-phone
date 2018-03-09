@@ -5,11 +5,12 @@ import { connect } from 'react-redux';
 import { ScrollView, TouchableOpacity, View, Text } from 'react-native';
 import { selectDay, dayCreate, dayFetch, daySave, dayDelete } from '../actions';
 import DateTimePicker from 'react-native-modal-datetime-picker';
+import Sound from 'react-native-sound';
 
 class HomeScreen extends Component {
 	componentWillMount() {
 		this.props.dayFetch();
-		console.log(this.props);
+		console.log(this.props.activeDays);
 	}
 	
 	state = {
@@ -22,7 +23,6 @@ class HomeScreen extends Component {
 
 	_handleNewDatePicked = (date) => {
 		const dayOfWeek = this.getDayOfWeek(this.props.day.day.dateString);
-
 		const dateString = date.toString();
 
 	    this.props.dayCreate({ 
@@ -52,6 +52,7 @@ class HomeScreen extends Component {
 	};
 
 	onDayPress(day) {
+
 		const dateObj = {
 			[day.day.dateString]: {
 				selected: true,
@@ -66,10 +67,10 @@ class HomeScreen extends Component {
 			}
 		}
 
+		dateObj['2018-03-30'] = { marked: true };
+
 		this.setState({ selectedDate: dateObj })
 		this.props.selectDay(day);
-
-		console.log(this.props);
 	}
 
 	getDayOfWeek(date) {
@@ -146,7 +147,6 @@ class HomeScreen extends Component {
 			        <Text style={styles.callButtonStyle}>
 			        	Call Time
 			        </Text>
-
 		        </TouchableOpacity>
 		        <DateTimePicker
 		          mode="time"
@@ -160,10 +160,7 @@ class HomeScreen extends Component {
 	}
 
 	deleteSelectedDay(findDay) {
-		console.log(findDay);
-		console.log("we here");
 		const getKeyByValue = _.findKey(this.props.activeDays, ['dateString', findDay.dateString]);
-		console.log(getKeyByValue);
 		this.props.dayDelete({ uid: getKeyByValue });
 	}
 
