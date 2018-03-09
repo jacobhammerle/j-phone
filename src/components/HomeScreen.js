@@ -57,17 +57,17 @@ class HomeScreen extends Component {
 			[day.day.dateString]: {
 				selected: true,
 				color: '#2DB1EF'
-			},
-			'2018-03-12': {
-				marked: true
-			},
-			'2018-03-16': {
-				marked: true, 
-				color: 'red'
 			}
 		}
 
-		dateObj['2018-03-30'] = { marked: true };
+		console.log(this.props.activeDays);
+
+		for (var key in this.props.activeDays) {
+		    if (!this.props.activeDays.hasOwnProperty(key)) continue;
+
+		    var obj = this.props.activeDays[key];
+		    dateObj[obj.dateString] = { marked: true };
+		}
 
 		this.setState({ selectedDate: dateObj })
 		this.props.selectDay(day);
