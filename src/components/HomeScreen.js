@@ -10,7 +10,6 @@ import Sound from 'react-native-sound';
 class HomeScreen extends Component {
 	componentWillMount() {
 		this.props.dayFetch();
-		console.log(this.props.activeDays);
 	}
 	
 	state = {
@@ -59,8 +58,6 @@ class HomeScreen extends Component {
 				color: '#2DB1EF'
 			}
 		}
-
-		console.log(this.props.activeDays);
 
 		for (var key in this.props.activeDays) {
 		    if (!this.props.activeDays.hasOwnProperty(key)) continue;
