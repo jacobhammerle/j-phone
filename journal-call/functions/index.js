@@ -5,7 +5,7 @@ const requestCall = require('./request_call');
 // // https://firebase.google.com/docs/functions/write-firebase-functions
 
 exports.helloWorld = functions.https.onRequest((request, response) => {
-  response.send("Hello from Firebase!");
+  response.send("Twilio Call Fire");
 });
 
 exports.requestCall = functions.https.onRequest(requestCall);
