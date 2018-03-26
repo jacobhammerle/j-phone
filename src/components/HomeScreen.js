@@ -52,6 +52,8 @@ class HomeScreen extends Component {
 
 	onDayPress(day) {
 
+		console.log('Day', day);
+
 		const dateObj = {
 			[day.day.dateString]: {
 				selected: true,

@@ -6,16 +6,17 @@ import firebase from 'firebase';
 import ReduxThunk from 'redux-thunk';
 import LoginForm from './components/LoginForm';
 import Router from './Router';
+import { firebaseInfo } from './config';
 
 class App extends Component {
 	componentWillMount() {
 		var config = {
-		    apiKey: 'AIzaSyDpvVjNdlhkdQV2DI1tb-tBDRSHjEjF8o0',
-		    authDomain: 'j-phone-f984d.firebaseapp.com',
-		    databaseURL: 'https://j-phone-f984d.firebaseio.com',
-		    projectId: 'j-phone-f984d',
-		    storageBucket: 'j-phone-f984d.appspot.com',
-		    messagingSenderId: '397589243205'
+		    apiKey: firebaseInfo.apiKey,
+		    authDomain: firebaseInfo.authDomain,
+		    databaseURL: firebaseInfo.databaseURL,
+		    projectId: firebaseInfo.projectId,
+		    storageBucket: firebaseInfo.storageBucket,
+		    messagingSenderId: firebaseInfo.messagingSenderId
 		};
 
 		firebase.initializeApp(config);

@@ -53,3 +53,4 @@ buck-out/
 */fastlane/screenshots
 
 config.js
+service_account.json
