@@ -1,3 +1,5 @@
+//import { twilioInfo } from '../../src/config';
+
 const twilio = require('twilio');
 
 const accountSid = 'ACae32bd0d972e37384bb43b10b916245c';

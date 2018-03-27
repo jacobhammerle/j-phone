@@ -1,6 +1,7 @@
 const admin = require('firebase-admin');
+const twilio = require('./twilio');
 
-module.exports = functions(req, res) {
+module.exports = function(req, res) {
 	if(!req.body.phone) {
 		return res.status(422).send({ error: "You must provide a phone number" });
 	}
@@ -9,6 +10,22 @@ module.exports = functions(req, res) {
 
 	admin.auth().getUser(phone)
 		.then(userRecord => {
-			
+			const code = Math.floor(Math.random() * 8999 + 1000);
+
+			twilio.messages.create({
+				body: 'your code is ' + code,
+				to: phone,
+				from: '+18598881609'
+			}, (err) => {
+				if(err) { return res.status(422).send(err); }
+
+				admin.database().ref('users/' + phone)
+					.update({ code: code, codeValid: true }, () => {
+						res.send({ success: true })
+					});
+			})
+		})
+		.catch((err) => {
+			res.status(422).send({ error: err });
 		})
 }
