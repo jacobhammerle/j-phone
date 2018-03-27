@@ -19,7 +19,7 @@ module.exports = function(req, res) {
 			}, (err) => {
 				if(err) { return res.status(422).send(err); }
 
-				admin.database().ref('users/' + phone)
+				admin.database().ref('/users/Qxfukr8RGKh3hhM9FWW3eC0SW8Y2/' + phone)
 					.update({ code: code, codeValid: true }, () => {
 						res.send({ success: true })
 					});
