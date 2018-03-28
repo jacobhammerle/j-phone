@@ -9,20 +9,6 @@ module.exports = (req, res) => {
 
   const phone = String(req.body.phone).replace(/[^\d]/g, '')
 
-	/*twilio.messages.create({
-	    body: `This is yo boy Jacob`,
-	    to: phone,
-	    from: '+18598881609'
-	  }, err => {
-	    if (err) { return res.status(422).send(err) }
-
-	    admin.database().ref(`phone/${phone}`)
-	      .update({ phone, codeValid: true }, () => {
-	        res.send({ success: true })
-	      })
-	  })
-	  */
-
 	var url = 'https://api.twilio.com/2010-04-01/Accounts/ACae32bd0d972e37384bb43b10b916245c/' + encodeURIComponent(phone)
 
 	twilio.calls.create({
@@ -33,6 +19,18 @@ module.exports = (req, res) => {
 		record: 'true'
 	}, err => {
 	    if (err) { return res.status(422).send(err) }
+
+	    const VoiceResponse = require('twilio').twiml.VoiceResponse;
+
+		const response = new VoiceResponse();
+		response.say({
+		    voice: 'alice',
+		    language: 'en'
+		},
+			'Tell me about your day'
+		);
+
+		console.log(response.toString());
 
 	    admin.database().ref(`phone/${phone}`)
 	      .update({ phone, codeValid: true }, () => {
