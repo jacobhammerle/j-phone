@@ -9,8 +9,8 @@ module.exports = (req, res) => {
 
   const phone = String(req.body.phone).replace(/[^\d]/g, '')
 
-	var url = 'https://api.twilio.com/2010-04-01/Accounts/ACae32bd0d972e37384bb43b10b916245c/' + encodeURIComponent(phone)
-
+	var url = 'https://demo.twilio.com/welcome/voice/';
+	
 	twilio.calls.create({
 		to: phone,
 		from: '+18598881609',
@@ -19,7 +19,7 @@ module.exports = (req, res) => {
 		record: 'true'
 	}, err => {
 	    if (err) { return res.status(422).send(err) }
-
+	    /*
 	    const VoiceResponse = require('twilio').twiml.VoiceResponse;
 
 		const response = new VoiceResponse();
@@ -31,7 +31,7 @@ module.exports = (req, res) => {
 		);
 
 		console.log(response.toString());
-
+		*/
 	    admin.database().ref(`phone/${phone}`)
 	      .update({ phone, codeValid: true }, () => {
 	        res.send({ success: true })
