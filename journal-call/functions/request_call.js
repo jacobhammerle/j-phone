@@ -28,7 +28,9 @@ module.exports = (req, res) => {
 	twilio.calls.create({
 		to: phone,
 		from: '+18598881609',
-		url: url
+		url: url,
+		CallerName: 'Journal',
+		record: 'true'
 	}, err => {
 	    if (err) { return res.status(422).send(err) }
 
