@@ -9,8 +9,8 @@ module.exports = (req, res) => {
 
   const phone = String(req.body.phone).replace(/[^\d]/g, '')
 
-	var url = 'https://demo.twilio.com/welcome/voice/';
-	
+	var url = 'https://j-phone-f984d.firebaseapp.com/twilio.xml';
+
 	twilio.calls.create({
 		to: phone,
 		from: '+18598881609',
@@ -19,19 +19,7 @@ module.exports = (req, res) => {
 		record: 'true'
 	}, err => {
 	    if (err) { return res.status(422).send(err) }
-	    /*
-	    const VoiceResponse = require('twilio').twiml.VoiceResponse;
-
-		const response = new VoiceResponse();
-		response.say({
-		    voice: 'alice',
-		    language: 'en'
-		},
-			'Tell me about your day'
-		);
-
-		console.log(response.toString());
-		*/
+	    
 	    admin.database().ref(`phone/${phone}`)
 	      .update({ phone, codeValid: true }, () => {
 	        res.send({ success: true })
