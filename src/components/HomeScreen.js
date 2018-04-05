@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { Calendar } from 'react-native-calendars';
 import { connect } from 'react-redux';
 import { ScrollView, TouchableOpacity, View, Text } from 'react-native';
-import { selectDay, dayCreate, dayFetch, daySave, dayDelete } from '../actions';
+import { selectDay, dayCreate, dayFetch, daySave, dayDelete, dayTurnOff } from '../actions';
 import DateTimePicker from 'react-native-modal-datetime-picker';
 import Sound from 'react-native-sound';
 
@@ -28,7 +28,8 @@ class HomeScreen extends Component {
 	    	callTime: this.formatAMPM(date), 
 	    	dayOfWeek: dayOfWeek, 
 	    	dateString: this.props.day.day.dateString,
-	    	completed: false
+	    	completed: false,
+	    	live: true
 	    });
 
 	    this._hideDateTimePicker();
@@ -44,6 +45,7 @@ class HomeScreen extends Component {
 	    	dayOfWeek: dayOfWeek, 
 	    	dateString: this.props.day.day.dateString,
 	    	completed: false,
+	    	live: true,
 	    	uid: getKeyByValue
 	    });
 
@@ -51,6 +53,8 @@ class HomeScreen extends Component {
 	};
 
 	onDayPress(day) {
+
+		console.log(this.props);
 
 		console.log('Day', day);
 
@@ -147,6 +151,11 @@ class HomeScreen extends Component {
 			        	Call Time
 			        </Text>
 		        </TouchableOpacity>
+		        <TouchableOpacity onPress={this.turnOffCall}>
+		        	<Text style={styles.callButtonStyle}>
+			        	Turn Off
+			        </Text>
+			    </TouchableOpacity>
 		        <DateTimePicker
 		          mode="time"
 		          isVisible={this.state.isDateTimePickerVisible}
@@ -156,6 +165,15 @@ class HomeScreen extends Component {
 				/>
 			</View>
 		)
+	}
+
+	turnOffCall() {
+		console.log(this.props.day.day.dateString);
+		this.props.dayTurnOff({ 
+	    	dateString: this.props.day.day.dateString,
+	    	completed: false,
+	    	live: false
+	    });
 	}
 
 	deleteSelectedDay(findDay) {
@@ -265,4 +283,4 @@ const mapStateToProps = state => {
 	}
 }
 
-export default connect(mapStateToProps, { selectDay, dayCreate, dayFetch, daySave, dayDelete })(HomeScreen);
+export default connect(mapStateToProps, { selectDay, dayCreate, dayFetch, daySave, dayDelete, dayTurnOff })(HomeScreen);

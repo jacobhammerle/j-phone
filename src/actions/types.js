@@ -7,3 +7,4 @@ export const SELECTED_DAY = 'selected_day';
 export const DAY_CREATE = 'day_create';
 export const DAY_FETCH_SUCCESS = 'day_fetch_success';
 export const DAY_DELETE = 'day_delete';
+export const DAY_TURN_OFF = 'day_turn_off';
