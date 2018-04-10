@@ -52,9 +52,11 @@ class HomeScreen extends Component {
 	    this._hideDateTimePicker();
 	};
 
-	onDayPress(day) {
+	turnOffCall() {
+		this.props.dayTurnOff({ dateString: null, completed: false, live: false });
+	}
 
-		console.log(this.props);
+	onDayPress(day) {
 
 		console.log('Day', day);
 
@@ -165,15 +167,6 @@ class HomeScreen extends Component {
 				/>
 			</View>
 		)
-	}
-
-	turnOffCall() {
-		console.log(this.props.day.day.dateString);
-		this.props.dayTurnOff({ 
-	    	dateString: this.props.day.day.dateString,
-	    	completed: false,
-	    	live: false
-	    });
 	}
 
 	deleteSelectedDay(findDay) {

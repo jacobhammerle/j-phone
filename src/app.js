@@ -5,6 +5,7 @@ import reducers from './reducers';
 import firebase from 'firebase';
 import ReduxThunk from 'redux-thunk';
 import LoginForm from './components/LoginForm';
+import SignUpForm from './components/SignUpForm';
 import Router from './Router';
 import { firebaseInfo } from './config';
 

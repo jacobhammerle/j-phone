@@ -1,6 +1,7 @@
 import React from 'react';
 import { Scene, Router, Actions } from 'react-native-router-flux';
 import LoginForm from './components/LoginForm';
+import SignUpForm from './components/SignUpForm';
 import HomeScreen from './components/HomeScreen';
 import UserProfile from './components/UserProfile';
 
@@ -10,6 +11,7 @@ const RouterComponent = () => {
 			<Scene key="root" hideNavBar>
 				<Scene key="auth">
 					<Scene key="LoginForm" component={LoginForm} title="Login" />
+					<Scene key="SignUpForm" component={SignUpForm} title="Signup" />
 				</Scene>
 				<Scene key="main">
 					<Scene 

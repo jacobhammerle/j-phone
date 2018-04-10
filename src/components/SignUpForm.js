@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
-import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import { emailChanged, passwordChanged, loginUser } from '../actions';
 import { Card, CardSection, Input, Button, Spinner } from './common';
@@ -44,14 +43,28 @@ class LoginForm extends Component {
 		}
 	}
 
-	switchLogin() {
-		Actions.SignUpForm();
-	}
-
 	render() {
 		return (
 			<View>
 				<Card>
+					<CardSection>
+						<Input
+							label="First Name"
+							placeholder="first name"
+							//onChangeText={this.onFirstNameChange.bind(this)}
+							value={this.props.firstName}
+						/>
+					</CardSection>
+
+					<CardSection>
+						<Input
+							label="Last Name"
+							placeholder="last name"
+							//onChangeText={this.onLastNameChange.bind(this)}
+							value={this.props.lastName}
+						/>
+					</CardSection>
+
 					<CardSection>
 						<Input
 							label="Email"
@@ -77,9 +90,9 @@ class LoginForm extends Component {
 						{this.renderButton()}
 					</CardSection>
 				</Card>
-				<TouchableOpacity onPress={this.switchLogin()}>
+				<TouchableOpacity>
 					<Text style={styles.createAccountText}>
-						Create an account
+						Already have an account?
 					</Text>
 				</TouchableOpacity>
 			</View>
