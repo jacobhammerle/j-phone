@@ -16,21 +16,22 @@ const Button = ({ onPress, children }) => {
 const styles = {
 	textStyle: {
 		alignSelf: 'center',
-		color: '#007aff',
-		fontSize: 16,
-		fontWeight: '600',
+		color: '#fff',
+		fontFamily: 'Roboto-Black',
+		fontSize: 20,
 		paddingTop: 10,
 		paddingBottom: 10
 	},
 	buttonStyle: {
 		flex: 1,
-		alignSelf: 'stretch',
-		backgroundColor: '#fff',
-		borderRadius: 5,
-		borderWidth: 1,
-		borderColor: '#007aff',
-		marginLeft: 5,
-		marginRight: 5
+		alignItems: 'center',
+		width: 100,
+		backgroundColor: '#2DB1EF',
+		borderRadius: 100,
+		shadowColor: '#000',
+		shadowOffset: { width: 0, height: 2 },
+		shadowOpacity: 0.1,
+		shadowRadius: 2
 	}
 }
 

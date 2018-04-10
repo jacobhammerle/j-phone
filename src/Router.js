@@ -12,15 +12,15 @@ const RouterComponent = () => {
 				<Scene key="auth">
 					<Scene 
 						key="LoginForm" 
-						component={LoginForm} 
-						title="Login"
+						component={LoginForm}
 						onLeft="false"
+						hideNavBar={true}
 					/>
 					<Scene 
 						key="SignUpForm" 
-						component={SignUpForm} 
-						title="Signup"
+						component={SignUpForm}
 						onLeft="false"
+						hideNavBar={true}
 					/>
 				</Scene>
 				<Scene key="main">

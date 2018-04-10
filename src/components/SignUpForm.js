@@ -27,7 +27,7 @@ class LoginForm extends Component {
 
 		return (
 			<Button onPress={this.onButtonPress.bind(this)}>
-				Log In
+				Signup
 			</Button>
 		)
 	}
@@ -46,7 +46,7 @@ class LoginForm extends Component {
 
 	render() {
 		return (
-			<View>
+			<View style={styles.loginContainer}>
 				<Card>
 					<CardSection>
 						<Input
@@ -90,26 +90,33 @@ class LoginForm extends Component {
 					<CardSection>
 						{this.renderButton()}
 					</CardSection>
+
+					<TouchableOpacity onPress={() => Actions.LoginForm()}>
+						<Text style={styles.createAccountText}>
+							Already have an account?
+						</Text>
+					</TouchableOpacity>
 				</Card>
-				<TouchableOpacity onPress={() => Actions.LoginForm()}>
-					<Text style={styles.createAccountText}>
-						Already have an account?
-					</Text>
-				</TouchableOpacity>
 			</View>
 		)
 	}
 }
 
 const styles = {
+	loginContainer: {
+		flex: 1,
+		backgroundColor: '#F7F7F7'
+	},
 	errorTextStyle: {
 		fontSize: 20,
 		alignSelf: 'center',
 		color: 'red'
 	},
 	createAccountText: {
+		fontFamily: 'Roboto-Regular',
 		alignSelf: 'center',
-		marginTop: 20
+		marginTop: 20,
+		color: '#000'
 	}
 }
 

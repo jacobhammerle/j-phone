@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, Image } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import { emailChanged, passwordChanged, loginUser } from '../actions';
@@ -46,12 +46,12 @@ class LoginForm extends Component {
 
 	render() {
 		return (
-			<View>
+			<View style={styles.loginContainer}>
 				<Card>
 					<CardSection>
 						<Input
 							label="Email"
-							placeholder="email@gmail.com"
+							placeholder="Email"
 							onChangeText={this.onEmailChange.bind(this)}
 							value={this.props.email}
 						/>
@@ -61,7 +61,7 @@ class LoginForm extends Component {
 						<Input
 							secureTextEntry
 							label="Password"
-							placeholder="password"
+							placeholder="Password"
 							onChangeText={this.onPasswordChange.bind(this)}
 							value={this.props.password}
 						/>
@@ -72,27 +72,33 @@ class LoginForm extends Component {
 					<CardSection>
 						{this.renderButton()}
 					</CardSection>
+
+					<TouchableOpacity onPress={() => Actions.SignUpForm()}>
+						<Text style={styles.createAccountText}>
+							Create an account
+						</Text>
+					</TouchableOpacity>
 				</Card>
-				<TouchableOpacity onPress={() => Actions.SignUpForm()}>
-					<Text style={styles.createAccountText}>
-						Create an account
-					</Text>
-				</TouchableOpacity>
 			</View>
 		)
 	}
 }
 
 const styles = {
+	loginContainer: {
+		flex: 1,
+		backgroundColor: '#F7F7F7'
+	},
 	errorTextStyle: {
 		fontSize: 20,
 		alignSelf: 'center',
 		color: 'red'
 	},
 	createAccountText: {
-		fontFamily: 'Roboto-Bold',
+		fontFamily: 'Roboto-Regular',
 		alignSelf: 'center',
-		marginTop: 20
+		marginTop: 20,
+		color: '#000'
 	}
 }
 

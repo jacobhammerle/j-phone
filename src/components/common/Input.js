@@ -6,7 +6,6 @@ const Input = ({ label, value, onChangeText, placeholder, secureTextEntry }) => 
 
 	return (
 		<View style={containerStyle}>
-			<Text style={labelStyle}>{label}</Text>
 			<TextInput
 				secureTextEntry={secureTextEntry}
 				placeholder={placeholder}
@@ -22,11 +21,14 @@ const Input = ({ label, value, onChangeText, placeholder, secureTextEntry }) => 
 const styles = {
 	inputStyle: {
 		color: '#000',
-		paddingRight: 5,
-		paddingLeft: 5,
-		fontSize: 18,
-		lineHeight: 23,
-		flex: 2
+		fontSize: 20,
+		lineHeight: 50,
+		paddingTop: 9,
+		paddingBottom: 9,
+		flex: 2,
+		backgroundColor: "#fff",
+		textAlign: 'center',
+		borderRadius: 100
 	},
 	labelStyle: {
 		fontSize: 18,
@@ -37,7 +39,11 @@ const styles = {
 		height: 40,
 		flex: 1,
 		flexDirection: 'row',
-		alignItems: 'center'
+		alignItems: 'center',
+		shadowColor: '#000',
+		shadowOffset: { width: 0, height: 2 },
+		shadowOpacity: 0.1,
+		shadowRadius: 2
 	}
 }
 
