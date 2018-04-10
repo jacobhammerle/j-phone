@@ -6,6 +6,9 @@
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest"
   },
+  "rnpm": {
+   "assets": ["./src/assets/fonts/Roboto"]
+  },
   "dependencies": {
     "firebase": "^4.9.1",
     "lodash": "^4.17.5",

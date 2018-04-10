@@ -90,6 +90,7 @@ const styles = {
 		color: 'red'
 	},
 	createAccountText: {
+		fontFamily: 'Roboto-Bold',
 		alignSelf: 'center',
 		marginTop: 20
 	}
