@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
+import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import { emailChanged, passwordChanged, loginUser } from '../actions';
 import { Card, CardSection, Input, Button, Spinner } from './common';
@@ -90,7 +91,7 @@ class LoginForm extends Component {
 						{this.renderButton()}
 					</CardSection>
 				</Card>
-				<TouchableOpacity>
+				<TouchableOpacity onPress={() => Actions.LoginForm()}>
 					<Text style={styles.createAccountText}>
 						Already have an account?
 					</Text>

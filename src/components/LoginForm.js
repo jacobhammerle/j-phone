@@ -44,10 +44,6 @@ class LoginForm extends Component {
 		}
 	}
 
-	switchLogin() {
-		Actions.SignUpForm();
-	}
-
 	render() {
 		return (
 			<View>
@@ -77,7 +73,7 @@ class LoginForm extends Component {
 						{this.renderButton()}
 					</CardSection>
 				</Card>
-				<TouchableOpacity onPress={this.switchLogin()}>
+				<TouchableOpacity onPress={() => Actions.SignUpForm()}>
 					<Text style={styles.createAccountText}>
 						Create an account
 					</Text>
