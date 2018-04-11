@@ -188,6 +188,14 @@ class HomeScreen extends Component {
 					hideExtraDays={true}
 					disableMonthChange={false}
 					markedDates={this.state.selectedDate}
+					theme={{
+						textDayFontFamily: 'Roboto-Black',
+    					textMonthFontFamily: 'Roboto-Black',
+    					textDayHeaderFontFamily: 'Roboto-Black',
+    					textDayFontSize: 18,
+    					textMonthFontSize: 25,
+    					textDayHeaderFontSize: 14
+					}}
 				/>
 				{this.renderSelectedDay()}
 			</View>
@@ -206,7 +214,13 @@ const styles = {
 	    paddingTop: 5,
 	    borderBottomWidth: 1,
 	    borderColor: '#eee',
-	    height: 350
+	    shadowColor: '#000',
+		shadowOffset: { width: 0, height: 2 },
+		shadowOpacity: 0.1,
+		shadowRadius: 2,
+		flex: 1,
+		flexDirection: 'column',
+		alignItems: 'stretch'
   	},
 	dayNumber: {
 		fontSize: 40,
@@ -223,6 +237,7 @@ const styles = {
   	},
 	container: {
 	    flex: 1,
+	    flexDirection: 'column',
 	    backgroundColor: '#2DB1EF'
   	},
   	callButtonStyle: {
@@ -253,12 +268,9 @@ const styles = {
 		color: '#FFFFFF'
 	},
 	callDetail: {
-		height: 200
-	},
-	buttonContainer: {
-		flex: 1, 
-		flexDirection: 'row',
-		alignSelf: 'center'
+		flex: 1,
+		flexDirection: 'column',
+		alignItems: 'flex-end'
 	},
 	changeTimeBtn: {
 		width: 130

@@ -29,7 +29,7 @@ const RouterComponent = () => {
 						onLeft={() => Actions.Profile()} 
 						key="HomeScreen" 
 						component={HomeScreen} 
-						title="Calendar"
+						hideNavBar={true}
 						initial 
 					/>
 					<Scene 
