@@ -100,7 +100,7 @@ class HomeScreen extends Component {
 			const findDay = _.find(this.props.activeDays, { 'dateString': this.props.day.day.dateString });
 
 			return (
-				<View>
+				<View style={styles.callDetailContainer}>
 					<Text style={styles.dayNumber}>
 						{this.props.day.day.day}
 					</Text>
@@ -148,8 +148,8 @@ class HomeScreen extends Component {
 
 		return (
 			<View style={styles.callDetail}>
-				<TouchableOpacity onPress={this._showDateTimePicker}>
-			        <Text style={styles.callButtonStyle}>
+				<TouchableOpacity onPress={this._showDateTimePicker} style={styles.callTimeButtonStyle}>
+			        <Text style={styles.callTimeTextStyle}>
 			        	Call Time
 			        </Text>
 		        </TouchableOpacity>
@@ -223,13 +223,15 @@ const styles = {
 		alignItems: 'stretch'
   	},
 	dayNumber: {
-		fontSize: 40,
-		fontWeight: 'bold',
+		fontFamily: 'Roboto-Medium',
+		fontSize: 42,
 		color: '#FFFFFF',
 	    textAlign: 'center',
 	    paddingTop: 15
   	},
   	dayOfWeek: {
+  		fontFamily: 'Roboto-Medium',
+  		fontSize: 20,
 	    textAlign: 'center',
 	    color: '#FFFFFF',
 	    paddingBottom: 10,
@@ -240,6 +242,23 @@ const styles = {
 	    flexDirection: 'column',
 	    backgroundColor: '#2DB1EF'
   	},
+  	callTimeButtonStyle: {
+		backgroundColor: '#FFF',
+		padding: 15,
+		marginLeft: 10,
+		marginRight: 10,
+		shadowColor: '#000',
+		shadowOffset: { width: 0, height: 2 },
+		shadowOpacity: 0.1,
+		shadowRadius: 2,
+		borderRadius: 12
+	},
+	callTimeTextStyle: {
+		fontFamily: 'Roboto-Bold',
+		textAlign: 'center',
+		fontSize: 18,
+		color: '#000'
+	},
   	callButtonStyle: {
 		textAlign: 'center',
 		backgroundColor: '#2DB1EF',
@@ -264,12 +283,16 @@ const styles = {
 		alignSelf: 'center'
 	},
 	staticCallText: {
+		fontFamily: 'Roboto-Black',
 		alignSelf: 'center',
 		color: '#FFFFFF'
 	},
-	callDetail: {
+	callDetailContainer: {
 		flex: 1,
 		flexDirection: 'column',
+		alignItems: 'center'
+	},
+	callDetail: {
 		alignItems: 'flex-end'
 	},
 	changeTimeBtn: {
