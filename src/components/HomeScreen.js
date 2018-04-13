@@ -116,21 +116,21 @@ class HomeScreen extends Component {
 	renderCallView(findDay) {
 		if (findDay) {
 			return (
-				<View style={styles.callDetail}>
+				<View>
 					<Text style={styles.staticCallText}>
 						Call Time:
 					</Text>
 					<Text style={styles.callSetStyle}>
 			        	{findDay.callTime}
 			        </Text>
-			        <View style={styles.buttonContainer}>
-				        <TouchableOpacity onPress={this._showDateTimePicker} style={styles.changeTimeBtn}>
-				        	<Text style={styles.callButtonStyle}>
+			        <View style={styles.callDetail}>
+				        <TouchableOpacity onPress={this._showDateTimePicker} style={styles.callTimeButtonStyle}>
+				        	<Text style={styles.callTimeTextStyle}>
 				        		Change Time
 				        	</Text>
 			        	</TouchableOpacity>
-			        	<TouchableOpacity onPress={() => this.deleteSelectedDay(findDay)} style={styles.deleteBtn}>
-				        	<Text style={styles.callButtonStyle}>
+			        	<TouchableOpacity onPress={() => this.deleteSelectedDay(findDay)} style={styles.callTimeButtonStyle}>
+				        	<Text style={styles.callTimeTextStyle}>
 				        		Delete
 				        	</Text>
 			        	</TouchableOpacity>
@@ -153,8 +153,8 @@ class HomeScreen extends Component {
 			        	Call Time
 			        </Text>
 		        </TouchableOpacity>
-		        <TouchableOpacity onPress={this.turnOffCall}>
-		        	<Text style={styles.callButtonStyle}>
+		        <TouchableOpacity onPress={this.turnOffCall} style={styles.callTimeButtonStyle}>
+		        	<Text style={styles.callTimeTextStyle}>
 			        	Turn Off
 			        </Text>
 			    </TouchableOpacity>
@@ -251,7 +251,8 @@ const styles = {
 		shadowOffset: { width: 0, height: 2 },
 		shadowOpacity: 0.1,
 		shadowRadius: 2,
-		borderRadius: 12
+		borderRadius: 12,
+		flexDirection: 'row'
 	},
 	callTimeTextStyle: {
 		fontFamily: 'Roboto-Bold',
@@ -274,18 +275,21 @@ const styles = {
 	callSetStyle: {
 		textAlign: 'center',
 		backgroundColor: '#2DB1EF',
-		fontSize: 30,
+		fontSize: 40,
 		color: '#FFFFFF',
 		padding: 7,
 		marginLeft: 10,
 		marginRight: 10,
 		borderRadius: 5,
-		alignSelf: 'center'
+		alignItems: 'stretch',
+		flexDirection: 'column',
 	},
 	staticCallText: {
 		fontFamily: 'Roboto-Black',
 		alignSelf: 'center',
-		color: '#FFFFFF'
+		color: '#FFFFFF',
+		alignItems: 'center',
+		flexDirection: 'column'
 	},
 	callDetailContainer: {
 		flex: 1,
@@ -293,7 +297,8 @@ const styles = {
 		alignItems: 'center'
 	},
 	callDetail: {
-		alignItems: 'flex-end'
+		alignItems: 'flex-end',
+		flexDirection: 'row'
 	},
 	changeTimeBtn: {
 		width: 130
