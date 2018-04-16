@@ -6,6 +6,7 @@ import { ScrollView, TouchableOpacity, View, Text } from 'react-native';
 import { selectDay, dayCreate, dayFetch, daySave, dayDelete, dayTurnOff } from '../actions';
 import DateTimePicker from 'react-native-modal-datetime-picker';
 import Sound from 'react-native-sound';
+import NavBar from './common/NavBar';
 
 class HomeScreen extends Component {
 	componentWillMount() {
@@ -57,8 +58,6 @@ class HomeScreen extends Component {
 	}
 
 	onDayPress(day) {
-
-		console.log('Day', day);
 
 		const dateObj = {
 			[day.day.dateString]: {
@@ -117,9 +116,6 @@ class HomeScreen extends Component {
 		if (findDay) {
 			return (
 				<View>
-					<Text style={styles.staticCallText}>
-						Call Time:
-					</Text>
 					<Text style={styles.callSetStyle}>
 			        	{findDay.callTime}
 			        </Text>
@@ -177,6 +173,7 @@ class HomeScreen extends Component {
 	render() {
 		return (
 			<View style={styles.container}>
+				<NavBar />
 				<Calendar
 					style={styles.calendar}
 					current={Date()}
@@ -226,15 +223,14 @@ const styles = {
 		fontFamily: 'Roboto-Medium',
 		fontSize: 42,
 		color: '#FFFFFF',
-	    textAlign: 'center',
-	    paddingTop: 15
+	    textAlign: 'center'
   	},
   	dayOfWeek: {
   		fontFamily: 'Roboto-Medium',
   		fontSize: 20,
 	    textAlign: 'center',
 	    color: '#FFFFFF',
-	    paddingBottom: 10,
+	    paddingBottom: 15,
 	    backgroundColor: '#2DB1EF'
   	},
 	container: {
@@ -278,26 +274,18 @@ const styles = {
 		fontSize: 40,
 		color: '#FFFFFF',
 		padding: 7,
-		marginLeft: 10,
-		marginRight: 10,
-		borderRadius: 5,
+		paddingTop: 0,
+		paddingBottom: 15,
 		alignItems: 'stretch',
 		flexDirection: 'column',
-	},
-	staticCallText: {
-		fontFamily: 'Roboto-Black',
-		alignSelf: 'center',
-		color: '#FFFFFF',
-		alignItems: 'center',
-		flexDirection: 'column'
 	},
 	callDetailContainer: {
 		flex: 1,
 		flexDirection: 'column',
+		justifyContent: 'center',
 		alignItems: 'center'
 	},
 	callDetail: {
-		alignItems: 'flex-end',
 		flexDirection: 'row'
 	},
 	changeTimeBtn: {
