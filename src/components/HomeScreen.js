@@ -217,7 +217,8 @@ const styles = {
 		shadowRadius: 2,
 		flex: 1,
 		flexDirection: 'column',
-		alignItems: 'stretch'
+		alignItems: 'stretch',
+		marginBottom: -25
   	},
 	dayNumber: {
 		fontFamily: 'Roboto-Medium',
