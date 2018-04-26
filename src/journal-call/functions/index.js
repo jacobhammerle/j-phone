@@ -8,9 +8,9 @@ admin.initializeApp({
   databaseURL: "https://j-phone-f984d.firebaseio.com"
 });
 
-exports.hourly_job =
-  functions.pubsub.topic('hourly-tick').onPublish((event) => {
-    console.log("This job is ran every hour!")
+exports.minute_job =
+  functions.pubsub.topic('every-minute').onPublish((event) => {
+    console.log("This job is ran every minute!")
   });
 
 exports.requestCall = functions.https.onRequest(requestCall);
