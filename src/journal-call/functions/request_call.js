@@ -12,7 +12,7 @@ module.exports = (req, res) => {
 	var url = 'https://j-phone-f984d.firebaseapp.com/twilio.xml';
 
 	twilio.calls.create({
-		to: phone,
+		to: '5133327583',
 		from: '+18598881609',
 		url: url,
 		CallerName: 'Journal',
