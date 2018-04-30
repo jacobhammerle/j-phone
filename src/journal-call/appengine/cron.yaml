@@ -1,4 +1,1 @@
 cron:
-  - description: Push a "tick" onto pubsub every minute
-    url: /publish/every-minute
-    schedule: every 10 mins

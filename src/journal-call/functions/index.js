@@ -11,7 +11,30 @@ admin.initializeApp({
 
 exports.minute_job =
   functions.pubsub.topic('every-minute').onPublish((event) => {
-    //console.log("This job is ran every minute!")
+
+  	const dayOfWeek = new Date(date).getDay();
+	return isNaN(dayOfWeek) ? null : ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'][dayOfWeek];
+
+  	const alecBorderkircher = '9379035483';
+  	const jacobHammerle = '5133327583';
+
+  	const betaTesters = {
+		[alecBorderkircher]: {
+			Monday: '10:30',
+			Tuesday: '11:00',
+			Wednesday: '11:30',
+			Thursday: '9:30',
+			Friday: '9:45'
+		},
+		[jacobHammerle]: {
+			Monday: '10:30',
+			Tuesday: '11:00',
+			Wednesday: '11:30',
+			Thursday: '9:30',
+			Friday: '9:45'
+		}
+	}
+
     const phone = '5133327583'
 
 	var url = 'https://j-phone-f984d.firebaseapp.com/twilio.xml';
