@@ -36,7 +36,7 @@ exports.minute_job =
 			Monday: '10:30 PM',
 			Tuesday: '11:00 PM',
 			Wednesday: '11:30 PM',
-			Thursday: '9:30pm',
+			Thursday: '9:30 PM',
 			Friday: '9:45 PM'
 		},
 		[jacobHammerle]: {
@@ -47,20 +47,13 @@ exports.minute_job =
 			Friday: '9:45 PM'
 		},
 		[seanKing]: {
-			Monday: '10:00 PM',
+			Monday: '11:00 PM',
 			Tuesday: '10:00 PM',
 			Wednesday: '10:00 PM',
 			Thursday: '10:00 PM',
 			Friday: '10:00 PM'
 		},
 		[michaelWatchmaker]: {
-			Monday: '5:30 PM',
-			Tuesday: '8:00 PM',
-			Wednesday: '5:30 PM',
-			Thursday: '5:30 PM',
-			Friday: '5:30 PM'
-		},
-		[jayLucien]: {
 			Monday: '5:30 PM',
 			Tuesday: '8:00 PM',
 			Wednesday: '5:30 PM',
