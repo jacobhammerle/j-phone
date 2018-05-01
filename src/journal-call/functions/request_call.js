@@ -4,14 +4,15 @@ var moment = require('moment-timezone');
 
 module.exports = (req, res) => {
 
-	const day = moment().utcOffset('-0400').format('dddd');
-	const time = moment().utcOffset('-0400').format('LT');
+	const day = 'Monday';
+	const time = '3:15 PM';
 
   	const alecBorderkircher = '9379035483';
   	const jacobHammerle = '5133327583';
   	const seanKing = '8478997326';
   	const michaelWatchmaker = '9259517715';
   	const benKolde = '5133357411';
+  	const jayLucien = '5137168862';
 
   	// for watching cron job and making sure things are running smoothly
 	console.log(day);

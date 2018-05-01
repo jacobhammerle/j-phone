@@ -21,6 +21,11 @@ exports.minute_job =
   	const seanKing = '8478997326';
   	const michaelWatchmaker = '9259517715';
   	const benKolde = '5133357411';
+  	const jayLucien = '';
+  	const dawnHammerle = '5138872480';
+  	const dougHammerle = '5138396035';
+  	const tylerHammerle = '5138076802';
+  	const allisonHammerle = '5133384761';
 
   	// for watching cron job and making sure things are running smoothly
 	console.log(day);
@@ -54,6 +59,48 @@ exports.minute_job =
 			Wednesday: '5:30 PM',
 			Thursday: '5:30 PM',
 			Friday: '5:30 PM'
+		},
+		[jayLucien]: {
+			Monday: '5:30 PM',
+			Tuesday: '8:00 PM',
+			Wednesday: '5:30 PM',
+			Thursday: '5:30 PM',
+			Friday: '5:30 PM'
+		},
+		[benKolde]: {
+			Monday: '9:00 PM',
+			Tuesday: '9:00 PM',
+			Wednesday: '9:00 PM',
+			Thursday: '9:00 PM',
+			Friday: '9:00 PM'
+		},
+		[tylerHammerle]: {
+			Monday: '6:30 PM',
+			Tuesday: '6:30 PM',
+			Wednesday: '6:30 PM',
+			Thursday: '6:30 PM',
+			Friday: '6:30 PM'
+		},
+		[dougHammerle]: {
+			Monday: '7:00 PM',
+			Tuesday: '7:00 PM',
+			Wednesday: '7:00 PM',
+			Thursday: '7:00 PM',
+			Friday: '7:00 PM'	
+		},
+		[dawnHammerle]: {
+			Monday: '3:00 PM',
+			Tuesday: '3:00 PM',
+			Wednesday: '3:00 PM',
+			Thursday: '3:00 PM',
+			Friday: '3:00 PM'	
+		},
+		[allisonHammerle]: {
+			Monday: '3:30 PM',
+			Tuesday: '3:30 PM',
+			Wednesday: '3:30 PM',
+			Thursday: '3:30 PM',
+			Friday: '3:30 PM'	
 		}
 	}
 
