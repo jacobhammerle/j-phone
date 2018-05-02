@@ -28,6 +28,9 @@ exports.minute_job =
   	const allisonHammerle = '5133384761';
   	const samBaker = '2406717367';
   	const madelineMartini = '8597606566';
+  	const nikkiGundimeda = '6302128943';
+  	const marcZuzolo = '8458265354';
+  	const joshVogt = '5132952522';
 
   	// for watching cron job and making sure things are running smoothly
 	console.log(day);
@@ -110,7 +113,28 @@ exports.minute_job =
 			Wednesday: '10:00 PM',
 			Thursday: '6:00 PM',
 			Friday: '6:00 PM'	
-		}
+		},
+		[marcZuzolo]: {
+			Monday: '6:00 PM',
+			Tuesday: '6:00 PM',
+			Wednesday: '6:00 PM',
+			Thursday: '6:00 PM',
+			Friday: '6:00 PM'	
+		},
+		[joshVogt]: {
+			Monday: '10:00 PM',
+			Tuesday: '10:00 PM',
+			Wednesday: '10:00 PM',
+			Thursday: '10:00 PM',
+			Friday: '10:00 PM'	
+		}//,
+		/*[nikkiGundimeda]: {
+			Monday: '5:00 PM',
+			Tuesday: '5:00 PM',
+			Wednesday: '5:00 PM',
+			Thursday: '5:00 PM',
+			Friday: '5:00 PM'	
+		}*/
 	}
 
 	const keys = Object.keys(betaTesters)
