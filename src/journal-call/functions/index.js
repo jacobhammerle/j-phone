@@ -26,6 +26,8 @@ exports.minute_job =
   	const dougHammerle = '5138396035';
   	const tylerHammerle = '5138076802';
   	const allisonHammerle = '5133384761';
+  	const samBaker = '2406717367';
+  	const madelineMartini = '8597606566';
 
   	// for watching cron job and making sure things are running smoothly
 	console.log(day);
@@ -89,11 +91,25 @@ exports.minute_job =
 			Friday: '3:00 PM'	
 		},
 		[allisonHammerle]: {
-			Monday: '3:30 PM',
-			Tuesday: '3:30 PM',
-			Wednesday: '3:30 PM',
-			Thursday: '3:30 PM',
-			Friday: '3:30 PM'	
+			Monday: '8:00 PM',
+			Tuesday: '8:00 PM',
+			Wednesday: '8:00 PM',
+			Thursday: '8:00 PM',
+			Friday: '8:00 PM'	
+		},
+		[samBaker]: {
+			Monday: '9:30 PM',
+			Tuesday: '9:30 PM',
+			Wednesday: '9:30 PM',
+			Thursday: '9:30 PM',
+			Friday: '9:30 PM'
+		},
+		[madelineMartini]: {
+			Monday: '10:00 PM',
+			Tuesday: '10:00 PM',
+			Wednesday: '10:00 PM',
+			Thursday: '6:00 PM',
+			Friday: '6:00 PM'	
 		}
 	}
 
